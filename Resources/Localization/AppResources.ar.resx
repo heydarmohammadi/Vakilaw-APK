@@ -253,13 +253,13 @@
     <value>كثيراً</value>
   </data>
   <data name="DatePlaceholder" xml:space="preserve">
-    <value>تاريخ و وقت التذكير (مثال: 16:30 1404/05/20)</value>
+    <value>تاريخ (مثال: 1404/07/01)</value>
   </data>
   <data name="SelectPriority" xml:space="preserve">
     <value>اختيار الأولوية</value>
   </data>
-  <data name="EnterDateAndTimeToast" xml:space="preserve">
-    <value>أدخل التاريخ و الوقت!</value>
+  <data name="EnterDateToast" xml:space="preserve">
+    <value>أدخل التاريخ!</value>
   </data>
   <data name="SuccessAddNoteToast" xml:space="preserve">
     <value>تم حفظ الملاحظة بنجاح</value>

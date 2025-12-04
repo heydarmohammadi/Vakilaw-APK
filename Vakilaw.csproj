@@ -88,6 +88,9 @@
 		<Compile Update="Views\MainPage.xaml.cs">
 			<DependentUpon>MainPage.xaml</DependentUpon>
 		</Compile>
+		<Compile Update="Views\ReportsPage.xaml.cs">
+		  <DependentUpon>ReportsPage.xaml</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -137,6 +140,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Popups\SubscriptionPopup.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ReportsPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\SMSPanelPage.xaml">

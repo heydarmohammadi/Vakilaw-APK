@@ -140,4 +140,31 @@ public class ClientService
         var result = await cmd.ExecuteScalarAsync();
         return Convert.ToInt32(result);
     }
+
+    public Client GetClientById(int clientId)
+    {
+        using var connection = _dbService.GetConnection();
+        connection.Open();
+
+        var cmd = connection.CreateCommand();
+        cmd.CommandText = "SELECT * FROM Clients WHERE Id = $id";
+        cmd.Parameters.AddWithValue("$id", clientId);
+
+        using var reader = cmd.ExecuteReader();
+        if (reader.Read())
+        {
+            return new Client
+            {
+                Id = reader.GetInt32(0),
+                FullName = reader.IsDBNull(1) ? null : reader.GetString(1),
+                NationalCode = reader.IsDBNull(2) ? null : reader.GetString(2),
+                PhoneNumber = reader.IsDBNull(3) ? null : reader.GetString(3),
+                Address = reader.IsDBNull(4) ? null : reader.GetString(4),
+                Description = reader.IsDBNull(5) ? null : reader.GetString(5)
+            };
+        }
+
+        return null;
+    }
+
 }

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vakilaw.Views.ReportsPage"
+             FlowDirection="RightToLeft"
+             BackgroundColor="#F5F6FA"
+             Title="گزارش‌ها">
+
+    <!-- پس‌زمینه گرادینت -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#A9C5DA" Offset="0.0"/>
+            <GradientStop Color="#08195C" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="20,50,20,10">
+
+            <!-- عنوان اصلی -->
+            <Border Padding="20"
+                   BackgroundColor="#0A3D62"
+                   StrokeShape="20">
+                <Label Text="📃 مرکز گزارش‌گیری"
+                       FontSize="28"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       FontAttributes="Bold"/>
+            </Border>
+
+            <!-- لیست کارت‌ها -->
+            <VerticalStackLayout Spacing="20">
+
+                <!-- گزارش موکل‌ها -->
+                <Border Padding="20"
+                        BackgroundColor="White"
+                        StrokeShape="25">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="15">
+                        <Image Source="customer.png" WidthRequest="50"/>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="گزارش موکل‌ها"
+                                   FontSize="20"
+                                   FontAttributes="Bold" 
+                                   TextColor="Black"/>
+
+                            <Label Text="مشاهده آمار، لیست، رشد و تحلیل"
+                                   Opacity="0.6"
+                                   FontSize="14" 
+                                   TextColor="Black"/>
+
+                            <Button Text="چاپ گزارش"
+                                    CornerRadius="12"
+                                    Margin="0,10,0,0"
+                                    BackgroundColor="#0A3D62"
+                                    TextColor="White"
+                                    Command="{Binding PrintClientsReportCommand}"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- گزارش پرونده‌ها -->
+                <Border Padding="20"
+                        BackgroundColor="White"
+                        StrokeShape="25">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="15">
+                        <Image Source="folder.png" WidthRequest="50"/>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="گزارش پرونده‌ها"
+                                   FontSize="20"
+                                   FontAttributes="Bold" TextColor="Black"/>
+
+                            <Label Text="وضعیت پرونده‌ها، مراحل و تحلیل پیشرفت"
+                                   Opacity="0.6"
+                                   FontSize="14" TextColor="Black"/>
+
+                            <Button Text="چاپ گزارش"
+                                    CornerRadius="12"
+                                    Margin="0,10,0,0"
+                                    BackgroundColor="#0A3D62"
+                                    TextColor="White"
+                                    Command="{Binding PrintCasesReportCommand}"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- گزارش تراکنش‌ها -->
+                <Border Padding="20"
+                        BackgroundColor="White"
+                        StrokeShape="25">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="15">
+                        <Image Source="transaction.png" WidthRequest="50"/>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="گزارش تراکنش‌های مالی"
+                                   FontSize="20"
+                                   FontAttributes="Bold" TextColor="Black"/>
+
+                            <Label Text="ریز تراکنش‌ها، گزارش درآمد، سود و زیان"
+                                   Opacity="0.6"
+                                   FontSize="14" TextColor="Black"/>
+
+                            <Button Text="چاپ گزارش"
+                                    CornerRadius="12"
+                                    Margin="0,10,0,0"
+                                    BackgroundColor="#0A3D62"
+                                    TextColor="White"
+                                    Command="{Binding PrintTransactionsReportCommand}"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

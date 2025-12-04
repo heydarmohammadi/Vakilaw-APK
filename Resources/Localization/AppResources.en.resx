@@ -253,13 +253,13 @@
     <value>High</value>
   </data>
   <data name="DatePlaceholder" xml:space="preserve">
-    <value>Reminder (example: 16:30 1404/05/20)</value>
+    <value>Date (example: 1404/07/01)</value>
   </data>
   <data name="SelectPriority" xml:space="preserve">
     <value>Select Priority</value>
   </data>
-  <data name="EnterDateAndTimeToast" xml:space="preserve">
-    <value>Enter the date and time!</value>
+  <data name="EnterDateToast" xml:space="preserve">
+    <value>Enter the date!</value>
   </data>
   <data name="SuccessAddNoteToast" xml:space="preserve">
     <value>Note saved successfully</value>

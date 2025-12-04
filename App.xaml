@@ -9,6 +9,7 @@
             <converters:BoolToColorConverter x:Key="BoolToColorConverter" 
                                          TrueColor="DodgerBlue" 
                                          FalseColor="LightGray"/>
+            <converters:BoolToColorConverter1 x:Key="BoolToColorConverter1" />                                        
             <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
             <converters:StringNotNullOrEmptyConverter x:Key="StringNotNullOrEmptyConverter"/>
             <converters:NullToBoolConverter x:Key="NullToBoolConverter"/>

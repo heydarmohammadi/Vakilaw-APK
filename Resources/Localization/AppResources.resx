@@ -253,13 +253,13 @@
     <value>زیاد</value>
   </data>
   <data name="DatePlaceholder" xml:space="preserve">
-    <value>تاریخ و ساعت یادآوری (مثال: 16:30 1404/05/20)</value>
+    <value>تاریخ (مثال:  1404/07/01)</value>
   </data>
   <data name="SelectPriority" xml:space="preserve">
     <value>انتخاب اولویت</value>
   </data>
-  <data name="EnterDateAndTimeToast" xml:space="preserve">
-    <value>تاریخ و ساعت را وارد کنید!</value>
+  <data name="EnterDateToast" xml:space="preserve">
+    <value>تاریخ را وارد کنید!</value>
   </data>
   <data name="SuccessAddNoteToast" xml:space="preserve">
     <value>یادداشت با موفقیت ذخیره شد</value>

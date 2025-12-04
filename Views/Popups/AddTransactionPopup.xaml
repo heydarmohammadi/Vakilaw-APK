@@ -3,13 +3,15 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:local="clr-namespace:Vakilaw.MarkupExtensions"
     x:Class="Vakilaw.Views.Popups.AddTransactionPopup"
-    BackgroundColor="#80000000" FlowDirection="RightToLeft">
+    BackgroundColor="#80000000"
+    FlowDirection="RightToLeft">
 
     <Border 
         Padding="20"
         BackgroundColor="#1b263b"
-        StrokeShape="20"
+        StrokeShape="RoundRectangle 20"
         VerticalOptions="Center"
         HorizontalOptions="Center"
         WidthRequest="300">
@@ -18,22 +20,32 @@
 
             <Label Text="افزودن تراکنش" FontFamily="IRANSansWeb" FontSize="20" HorizontalOptions="Center" />
 
-            <Entry Placeholder="عنوان" PlaceholderColor="DarkGray" FontFamily="IRANSansWeb" Text="{Binding Title}" />
+            <Entry Placeholder="عنوان" PlaceholderColor="DarkGray" FontFamily="IRANSansWeb"
+                   Text="{Binding Title}" />
 
-            <Entry x:Name="AmountEntry" Placeholder="مبلغ" PlaceholderColor="DarkGray" FontFamily="IRANSansWeb" Keyboard="Numeric" Text="{Binding Amount}" TextChanged="AmountEntry_TextChanged"/>
+            <!-- Entry مبلغ با فرمت عددی -->
+            <Entry x:Name="AmountEntry" Placeholder="مبلغ" PlaceholderColor="DarkGray" FontFamily="IRANSansWeb"
+                   Keyboard="Numeric"
+                   Text="{Binding AmountText, Mode=TwoWay}" Unfocused="AmountEntry_Unfocused"/>
+           
+            <!-- RadioButton گروهی برای نوع تراکنش -->
+            <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
+                <RadioButton Content="درآمد" IsChecked="{Binding IsIncome}" GroupName="TransactionType" FontFamily="IRANSansWeb"/>
+                <RadioButton Content="هزینه" IsChecked="{Binding IsExpense}" GroupName="TransactionType" FontFamily="IRANSansWeb"/>
+            </StackLayout>
 
-            <HorizontalStackLayout>
-                <Label Text="درآمد؟" FontFamily="IRANSansWeb" VerticalOptions="Center" />
-                <Switch IsToggled="{Binding IsIncome}" ThumbColor="ForestGreen" />
-            </HorizontalStackLayout>
-
-            <DatePicker Date="{Binding Date}" FontFamily="IRANSansWeb"/>
-
-            <Border StrokeShape="5">
-            <Editor Placeholder="توضیحات" FontFamily="IRANSansWeb" AutoSize="TextChanges" BackgroundColor="White"
-                    Text="{Binding Description}" HeightRequest="80" />
+            <Entry x:Name="DateEntry"
+            Text="{Binding Transaction.DateString}"
+            Placeholder="{local:Loc DatePlaceholder}" PlaceholderColor="DarkGray" FontFamily="IRANSansWeb"
+            />
+          
+            <Border StrokeShape="RoundRectangle 5">
+                <Editor Placeholder="توضیحات ..." FontFamily="IRANSansWeb" AutoSize="TextChanges" BackgroundColor="White"
+                        Text="{Binding Description}" TextColor="Black" HeightRequest="80" />
             </Border>
-            <Button Text="ذخیره" FontFamily="IRANSansWeb" FontAttributes="Bold" Command="{Binding SaveCommand}" BackgroundColor="#2196F3" TextColor="White"/>
+
+            <Button Text="ذخیره" FontFamily="IRANSansWeb" FontAttributes="Bold" 
+                    Command="{Binding SaveCommand}" BackgroundColor="#2196F3" TextColor="White"/>
         </VerticalStackLayout>
     </Border>
 </mopups:PopupPage>

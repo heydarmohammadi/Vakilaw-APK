@@ -12,7 +12,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <conv:BoolToStarConverter x:Key="BoolToStarConverter" />
-            <Style x:Key="CardFrameStyle" TargetType="Border">
+            <Style x:Key="CardBorderStyle" TargetType="Border">
                 <Setter Property="StrokeShape" Value="12"/>
                 <Setter Property="Padding" Value="10"/>
                 <Setter Property="Margin" Value="6,8"/>
@@ -59,7 +59,7 @@
             </Grid>
 
             <!-- کارت‌ها -->
-            <StackLayout Grid.Row="1" Padding="20,10" Spacing="15" Margin="0,125">
+            <StackLayout Grid.Row="1" Padding="20,10" Spacing="15" Margin="0,100">
 
                 <!-- لیست وکلا -->
                 <Border StrokeShape="12" Padding="0" BackgroundColor="#003049">
@@ -95,7 +95,8 @@
                 </Border>
 
                 <!-- مدیریت قراردادها -->
-                <Border StrokeShape="12" Padding="15" BackgroundColor="#003049">  <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->               
+                <Border StrokeShape="12" Padding="15" BackgroundColor="#003049">
+                    <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
                     <Grid ColumnDefinitions="Auto,*">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding DocumentsPageCommand}"/>
@@ -120,7 +121,8 @@
                 </Border>
 
                 <!-- مدیریت مالی -->
-                <Border StrokeShape="12" Padding="15" BackgroundColor="#003049"> <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
+                <Border StrokeShape="12" Padding="15" BackgroundColor="#003049">
+                    <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
                     <Grid ColumnDefinitions="Auto,*">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding TransactionsPageCommand}"/>
@@ -130,51 +132,59 @@
                     </Grid>
                 </Border>
 
+
                 <!-- گزارش‌ها -->
-                <Border StrokeShape="12" IsEnabled="{Binding CanUseLawyerFeatures}" Padding="15" BackgroundColor="#003049">
+                <Border StrokeShape="12" Padding="15" BackgroundColor="#003049">
+                    <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
                     <Grid ColumnDefinitions="Auto,*">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ReportsPageCommand}"/>
+                        </Grid.GestureRecognizers>
                         <Image Source="reports.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
                         <Label Text="گزارش ها" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
                     </Grid>
                 </Border>
+
+                <Label Text="⚖️ سامانه حقوقی وکیلاو ⚖️" TextColor="Black" FontSize="20" FontAttributes="Bold" FontFamily="IRANSansWeb" HorizontalTextAlignment="Center"/>
+
             </StackLayout>
         </Grid>
 
         <!-- نوار پایین -->
         <Grid Grid.Row="1"
-      BackgroundColor="#1c1c1c"
-      HeightRequest="70"
-      ColumnDefinitions="*,*,*,*,*">
+        BackgroundColor="#1c1c1c"
+        HeightRequest="70"
+        ColumnDefinitions="*,*,*,*,*">
 
             <!-- تنظیمات (Col 0) -->
             <VerticalStackLayout Grid.Column="0"
                          HorizontalOptions="Center"
                          VerticalOptions="Center"
                          Spacing="2">
-                <Frame Padding="6"
-               CornerRadius="20"
-               BackgroundColor="Transparent"
-               HasShadow="False">
-                    <Frame.GestureRecognizers>
+                <Border Padding="6"
+                StrokeShape="20"
+                BackgroundColor="Transparent">
+              
+                    <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectTabCommand}"
                         CommandParameter="Settings" />
-                    </Frame.GestureRecognizers>
-                    <Frame.Style>
-                        <Style TargetType="Frame">
+                    </Border.GestureRecognizers>
+                    <Border.Style>
+                        <Style TargetType="Border">
                             <Setter Property="BackgroundColor" Value="Transparent" />
                             <Style.Triggers>
-                                <DataTrigger TargetType="Frame"
+                                <DataTrigger TargetType="Border"
                                      Binding="{Binding SelectedTab}"
                                      Value="Settings">
                                     <Setter Property="BackgroundColor" Value="#22FF0000"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </Frame.Style>
+                    </Border.Style>
 
                     <Image Source="settings.png"
-                   WidthRequest="26"
-                   HeightRequest="26">
+                    WidthRequest="26"
+                    HeightRequest="26">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Setter Property="Opacity" Value="0.8" />
@@ -190,10 +200,10 @@
                             </Style>
                         </Image.Style>
                     </Image>
-                </Frame>
+                </Border>
 
                 <Label Text="تنظیمات"
-               FontSize="12">
+                FontSize="12">
                     <Label.Style>
                         <Style TargetType="Label">
                             <Setter Property="TextColor" Value="White" />
@@ -214,30 +224,30 @@
                          HorizontalOptions="Center"
                          VerticalOptions="Center"
                          Spacing="2">
-                <Frame Padding="6"
-               CornerRadius="20"
-               BackgroundColor="Transparent"
-               HasShadow="False">
-                    <Frame.GestureRecognizers>
+                <Border Padding="6"
+               StrokeShape="20"
+               BackgroundColor="Transparent" >
+              
+                    <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectTabCommand}"
                         CommandParameter="AdlIran" />
-                    </Frame.GestureRecognizers>
-                    <Frame.Style>
-                        <Style TargetType="Frame">
+                    </Border.GestureRecognizers>
+                    <Border.Style>
+                        <Style TargetType="Border">
                             <Setter Property="BackgroundColor" Value="Transparent" />
                             <Style.Triggers>
-                                <DataTrigger TargetType="Frame"
+                                <DataTrigger TargetType="Border"
                                      Binding="{Binding SelectedTab}"
                                      Value="AdlIran">
                                     <Setter Property="BackgroundColor" Value="#22FF0000"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </Frame.Style>
+                    </Border.Style>
 
                     <Image Source="adliran.png"
-                   WidthRequest="26"
-                   HeightRequest="26">
+                    WidthRequest="26"
+                    HeightRequest="26">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Setter Property="Opacity" Value="0.8" />
@@ -253,10 +263,10 @@
                             </Style>
                         </Image.Style>
                     </Image>
-                </Frame>
+                </Border>
 
                 <Label Text="عدل ایران"
-               FontSize="12">
+                FontSize="12">
                     <Label.Style>
                         <Style TargetType="Label">
                             <Setter Property="TextColor" Value="White" />
@@ -274,19 +284,18 @@
 
             <!-- افزودن (Col 2) - دکمه وسط -->
             <Grid Grid.Column="2"
-          HorizontalOptions="Center"
-          VerticalOptions="Center">
-                <Frame WidthRequest="65"
-               HeightRequest="65"
-               CornerRadius="32"
-               BackgroundColor="#343a40"
-               HasShadow="True"
-               TranslationY="-15"
-               Padding="0">
-                    <Frame.GestureRecognizers>
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+                <Border WidthRequest="65"
+                HeightRequest="65"
+                StrokeShape="32"
+                BackgroundColor="#343a40"           
+                TranslationY="-15"
+                Padding="0">
+                    <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectTabCommand}"
                         CommandParameter="Add" />
-                    </Frame.GestureRecognizers>
+                    </Border.GestureRecognizers>
                     <Image Source="add.png"
                    WidthRequest="30"
                    HeightRequest="30"
@@ -305,7 +314,7 @@
                             </Style>
                         </Image.Style>
                     </Image>
-                </Frame>
+                </Border>
             </Grid>
 
             <!-- نشان‌ها (Col 3) -->
@@ -313,30 +322,30 @@
                          HorizontalOptions="Center"
                          VerticalOptions="Center"
                          Spacing="2">
-                <Frame Padding="6"
-               CornerRadius="20"
-               BackgroundColor="Transparent"
-               HasShadow="False">
-                    <Frame.GestureRecognizers>
+                <Border Padding="6"
+                StrokeShape="20"
+                BackgroundColor="Transparent">
+           
+                    <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectTabCommand}"
                               CommandParameter="Bookmarks" />
-                    </Frame.GestureRecognizers>
-                    <Frame.Style>
-                        <Style TargetType="Frame">
+                    </Border.GestureRecognizers>
+                    <Border.Style>
+                        <Style TargetType="Border">
                             <Setter Property="BackgroundColor" Value="Transparent" />
                             <Style.Triggers>
-                                <DataTrigger TargetType="Frame"
+                                <DataTrigger TargetType="Border"
                                      Binding="{Binding SelectedTab}"
                                      Value="Bookmarks">
                                     <Setter Property="BackgroundColor" Value="#22FF0000"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </Frame.Style>
+                    </Border.Style>
 
                     <Image Source="bookmark.png"
-                   WidthRequest="26"
-                   HeightRequest="26" InputTransparent="True">
+                    WidthRequest="26"
+                    HeightRequest="26" InputTransparent="True">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Setter Property="Opacity" Value="0.8" />
@@ -352,11 +361,11 @@
                             </Style>
                         </Image.Style>
                     </Image>
-                </Frame>
+                </Border>
 
                 <Label Text="نشان‌ها"
-               FontSize="12"
-               Margin="2,0,0,0">
+                FontSize="12"
+                Margin="2,0,0,0">
                     <Label.Style>
                         <Style TargetType="Label">
                             <Setter Property="TextColor" Value="White" />
@@ -377,30 +386,30 @@
                          HorizontalOptions="Center"
                          VerticalOptions="Center"
                          Spacing="2">
-                <Frame Padding="6"
-               CornerRadius="20"
-               BackgroundColor="Transparent"
-               HasShadow="False">
-                    <Frame.GestureRecognizers>
+                <Border Padding="6"
+                StrokeShape="20"
+                BackgroundColor="Transparent">
+               
+                    <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectTabCommand}"
                         CommandParameter="Home" />
-                    </Frame.GestureRecognizers>
-                    <Frame.Style>
-                        <Style TargetType="Frame">
+                    </Border.GestureRecognizers>
+                    <Border.Style>
+                        <Style TargetType="Border">
                             <Setter Property="BackgroundColor" Value="Transparent" />
                             <Style.Triggers>
-                                <DataTrigger TargetType="Frame"
+                                <DataTrigger TargetType="Border"
                                      Binding="{Binding SelectedTab}"
                                      Value="Home">
                                     <Setter Property="BackgroundColor" Value="#22FF0000"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </Frame.Style>
+                    </Border.Style>
 
                     <Image Source="home.png"
-                   WidthRequest="26"
-                   HeightRequest="26">
+                    WidthRequest="26"
+                    HeightRequest="26">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Setter Property="Opacity" Value="0.8" />
@@ -416,11 +425,11 @@
                             </Style>
                         </Image.Style>
                     </Image>
-                </Frame>
+                </Border>
 
                 <Label Text="خانه"
-               FontSize="12"
-               Margin="10,0">
+                FontSize="12"
+                Margin="10,0">
                     <Label.Style>
                         <Style TargetType="Label">
                             <Setter Property="TextColor" Value="White" />
@@ -455,7 +464,7 @@
                     <CollectionView ItemsSource="{Binding Lawyers}" RemainingItemsThreshold="1" RemainingItemsThresholdReachedCommand="{Binding LoadNextPageCommand}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Frame Padding="8" Margin="2" CornerRadius="10" BackgroundColor="#F9F9F9" HasShadow="True">
+                                <Border Padding="8" Margin="2" StrokeShape="10" BackgroundColor="#F9F9F9">
                                     <Grid ColumnDefinitions="2*,1.5*,1*,Auto">
                                         <Label Grid.Column="0" Text="{Binding FullName}" TextColor="Black" FontFamily="Sahel" FontSize="13" FontAttributes="Bold"/>
                                         <Label Grid.Column="1" Text="{Binding PhoneNumber}" TextColor="Black" FontFamily="IRANSansWeb" FontAttributes="Bold" FontSize="12"/>
@@ -464,7 +473,7 @@
                                                      Command="{Binding BindingContext.ShowDetailsCommand, Source={x:Reference Name=LawyersListPanel}}"
                                                      CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30"/>
                                     </Grid>
-                                </Frame>
+                                </Border>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
@@ -482,10 +491,10 @@
                     SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:LawItem">
-                        <Frame Margin="5"
-                       Padding="10"
-                       BorderColor="LightGray"
-                       Style="{StaticResource CardFrameStyle}">
+                        <Border Margin="5"
+                        Padding="10"
+                        Stroke="LightGray"
+                        Style="{StaticResource CardBorderStyle}">
 
                             <!-- Expander -->
                             <toolkit:Expander IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
@@ -536,14 +545,14 @@
                                 </toolkit:Expander.Content>
                             </toolkit:Expander>
 
-                            <!-- تغییر ظاهر Frame هنگام Expand -->
-                            <Frame.Triggers>
-                                <DataTrigger TargetType="Frame" Binding="{Binding IsExpanded}" Value="True">
+                            <!-- تغییر ظاهر Border هنگام Expand -->
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border" Binding="{Binding IsExpanded}" Value="True">
                                     <Setter Property="BackgroundColor" Value="GhostWhite"/>
-                                    <Setter Property="HasShadow" Value="True"/>
+                                    <!--<Setter Property="HasShadow" Value="True"/>-->
                                 </DataTrigger>
-                            </Frame.Triggers>
-                        </Frame>
+                            </Border.Triggers>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

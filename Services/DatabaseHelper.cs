@@ -12,7 +12,40 @@ public static class DatabaseHelper
 {
     public static string ConnectionString { get; set; }
 
-    public static (DateTime? dateTime, string errorMessage) ConvertShamsiToGregorian(string shamsiDateTime)
+    //شمسی به میلادی
+    public static (DateTime? dateTime, string errorMessage) ConvertShamsiToGregorian(string shamsiDate)
+    {
+        if (string.IsNullOrWhiteSpace(shamsiDate))
+            return (null, LocalizationService.Instance["EnterDateAndTime"]);
+
+        try
+        {
+            shamsiDate = ConvertToEnglishNumbers(shamsiDate).Trim();
+
+            var dateParts = shamsiDate.Split('/');
+            if (dateParts.Length != 3)
+                return (null, LocalizationService.Instance["EnterFullDateErrorMessage"]);
+
+            if (!int.TryParse(dateParts[0], out int year) ||
+                !int.TryParse(dateParts[1], out int month) ||
+                !int.TryParse(dateParts[2], out int day))
+                return (null, LocalizationService.Instance["InvalidDateErrorMessage"]);
+
+            // تبدیل به میلادی (ساعت 00:00)
+            var persianCalendar = new System.Globalization.PersianCalendar();
+            DateTime gregorianDate = persianCalendar.ToDateTime(year, month, day, 0, 0, 0, 0);
+
+            return (DateTime.SpecifyKind(gregorianDate, DateTimeKind.Local), null);
+        }
+        catch
+        {
+            return (null, LocalizationService.Instance["unRecognizedErrorMessage"]);
+        }
+    }
+
+
+    //شمسی به میلادی با ساعت
+    public static (DateTime? dateTime, string errorMessage) ConvertShamsiToGregorian1(string shamsiDateTime)
     {
         if (string.IsNullOrWhiteSpace(shamsiDateTime))
             return (null, LocalizationService.Instance["EnterDateAndTime"]);
@@ -58,6 +91,26 @@ public static class DatabaseHelper
             return (null, LocalizationService.Instance["unRecognizedErrorMessage"]);
         }
     }
+
+    //میلادی به شمسی
+    public static string ConvertGregorianToShamsi(DateTime date)
+    {
+        try
+        {
+            var pc = new System.Globalization.PersianCalendar();
+
+            int year = pc.GetYear(date);
+            int month = pc.GetMonth(date);
+            int day = pc.GetDayOfMonth(date);
+
+            return $"{year:0000}/{month:00}/{day:00}";
+        }
+        catch
+        {
+            return LocalizationService.Instance["unRecognizedErrorMessage"];
+        }
+    }
+
 
     public static string ConvertToEnglishNumbers(string input)
     {

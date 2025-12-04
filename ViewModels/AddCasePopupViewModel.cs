@@ -12,6 +12,7 @@ namespace Vakilaw.ViewModels
     public partial class AddCasePopupViewModel : ObservableObject
     {
         private readonly AddCasePopup _popup;
+        private readonly ClientsAndCasesViewModel _clientsAndCasesViewModel;
         private readonly Client _client;   
 
         [ObservableProperty] private string clientName;
@@ -27,9 +28,10 @@ namespace Vakilaw.ViewModels
         [ObservableProperty] private string status;
         [ObservableProperty] private string description;
 
-        public AddCasePopupViewModel(AddCasePopup popup, Client client)
+        public AddCasePopupViewModel(AddCasePopup popup, ClientsAndCasesViewModel clientsAndCasesViewModel, Client client)
         {
             _popup = popup;
+            _clientsAndCasesViewModel = clientsAndCasesViewModel;
             _client = client;
             ClientName = client.FullName;
         }

@@ -65,11 +65,11 @@ public static class MauiProgram
         builder.Services.AddTransient<LawyerSubmitVM>();
         builder.Services.AddTransient<SubscriptionPopupVM>();
 
-
         builder.Services.AddTransient<ClientsAndCasesViewModel>();
         builder.Services.AddTransient<DocumentsViewModel>();
         builder.Services.AddTransient<SmsPanelVM>();      
         builder.Services.AddTransient<TransactionsVM>();
+        builder.Services.AddTransient<ReportsVM>();
 
         // -------------------- صفحات --------------------
         builder.Services.AddTransient<MainPage>();
@@ -81,6 +81,7 @@ public static class MauiProgram
         builder.Services.AddTransient<DocumentsPage>();
         builder.Services.AddTransient<SMSPanelPage>();
         builder.Services.AddTransient<TransactionsPage>();
+        builder.Services.AddTransient<ReportsPage>();
 
 #if ANDROID
         builder.Services.AddSingleton<IPrinterService, Vakilaw.Platforms.Android.PrinterService>();

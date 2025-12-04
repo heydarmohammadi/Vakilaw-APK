@@ -1,12 +1,49 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vakilaw.Views.TransactionsPage"
-             Title="تراکنش‌ها">
+             xmlns:vm="clr-namespace:Vakilaw.ViewModels"
+             Title="تراکنش‌ها" FlowDirection="RightToLeft">
 
-    <VerticalStackLayout Padding="15" Spacing="15">
+    <Shell.TitleView>
+        <VerticalStackLayout>
+            <Grid Padding="10" ColumnDefinitions="auto,auto">
+                <!--<Label Text="برگشت به صفحه اصلی" Grid.Column="0" Margin="-10,5,0,0" FontFamily="IRANSansWeb" FontSize="14" FontAttributes="Bold"/>-->
+                <Label Text="لیست تراکنش ها" Grid.Column="1" FontFamily="IRANSansWeb" TextColor="Gold" FontSize="16" FontAttributes="Bold" Margin="60,3"/>
+            </Grid>
+        </VerticalStackLayout>
+    </Shell.TitleView>
 
-        <!-- دکمه افزودن تراکنش -->
-        <Button Text="➕ افزودن تراکنش"
+    <Grid RowDefinitions="Auto, *" Padding="10" BackgroundColor="#0d1b2a">
+        <VerticalStackLayout Grid.Row="0" Padding="15" Spacing="15">
+            <Entry Placeholder="🔍 جستجو براساس عنوان ..." PlaceholderColor="DarkGray" FontFamily="IRANSansWeb" HorizontalOptions="Fill"
+            Text="{Binding SearchText, Mode=TwoWay}" ClearButtonVisibility="WhileEditing"/>
+
+            <!-- سرچ بازه تاریخ شمسی -->
+            <HorizontalStackLayout Spacing="8">
+                <Entry Placeholder="از تاریخ (مثال: 1404/07/01)"
+                       PlaceholderColor="DarkGray"
+                       FontFamily="IRANSansWeb"
+                       Text="{Binding FromDateShamsi, Mode=TwoWay}"
+                       WidthRequest="175"/>
+
+                <Entry Placeholder="تا تاریخ (مثال: 1404/07/05)"
+                       PlaceholderColor="DarkGray"
+                       FontFamily="IRANSansWeb"
+                       Text="{Binding ToDateShamsi, Mode=TwoWay}"
+                       WidthRequest="175"/>
+            </HorizontalStackLayout>
+
+            <!-- دکمه سرچ بازه -->
+            <Button Text="🔍 جستجو در بازه"
+                    Command="{Binding SearchByRangeCommand}"
+                    BackgroundColor="#5e548e"
+                    TextColor="White"
+                    FontFamily="IRANSansWeb"
+                    HeightRequest="40"
+                    CornerRadius="10"/>
+
+            <!-- دکمه افزودن تراکنش -->
+            <Button Text="➕ افزودن تراکنش" FontAttributes="Bold" FontFamily="IRANSansWeb"
                 Command="{Binding ShowAddTransactionPopupCommand}"
                 BackgroundColor="#2196F3"
                 TextColor="White"
@@ -14,38 +51,75 @@
                 HeightRequest="45"
                 HorizontalOptions="Fill"/>
 
-        <!-- لیست تراکنش‌ها -->
-        <CollectionView ItemsSource="{Binding Transactions}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Border Margin="5"
-                           Padding="10"
-                           StrokeShape="12"                          
-                           Stroke="{Binding IsIncome, Converter={StaticResource BoolToColorConverter}}">
-                        <Grid ColumnDefinitions="*,Auto"
-                              RowDefinitions="Auto,Auto">
+            <Border Stroke="Black" StrokeShape="10" StrokeThickness="3">
+                <!-- لیست تراکنش‌ها -->
+                <CollectionView ItemsSource="{Binding Transactions}" MaximumHeightRequest="400">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="5"
+                            Padding="10"
+                            StrokeShape="12"                          
+                            Stroke="{Binding IsIncome, Converter={StaticResource BoolToColorConverter1}}">
+                                <Grid ColumnDefinitions="*,Auto"
+                                RowDefinitions="Auto,Auto">
 
-                            <Label Text="{Binding Title}"
+                                    <Label Text="{Binding Title}"
                                    FontAttributes="Bold"
                                    Grid.Row="0" Grid.Column="0"/>
 
-                            <Label Text="{Binding Amount, StringFormat='{0:N0} ₮'}"
-                                   TextColor="{Binding IsIncome, Converter={StaticResource BoolToColorConverter}}"
+                                    <Label Text="{Binding Amount, StringFormat='{0:N0} تومان'}" FontFamily="IRANSansWeb"
+                                   TextColor="{Binding IsIncome, Converter={StaticResource BoolToColorConverter1}}"
                                    Grid.Row="0" Grid.Column="1"/>
 
-                            <Label Text="{Binding Date, StringFormat='{0:yyyy/MM/dd}'}"
-                                   FontSize="12"
+                                    <Label Text="{Binding DateShamsi}"
+                                   FontSize="12" FontFamily="IRANSansWeb"
                                    Grid.Row="1" Grid.Column="0"/>
 
-                            <Label Text="{Binding Description}"
-                                   FontSize="12"
-                                   TextColor="Gray"
-                                   Grid.Row="1" Grid.Column="1"/>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                    <Button Text="مشاهده توضیحات" TextColor="White" Grid.Row="1" Grid.Column="1" BackgroundColor="#5e548e" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsVM}}, Path=ShowDetailsCommand}" CommandParameter="{Binding Id}" FontSize="12" FontFamily="IRANSansWeb"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+        </VerticalStackLayout>
+        
+        <!-- فوتر ثابت -->
+        <VerticalStackLayout Grid.Row="1"
+        Padding="10"
+        Spacing="0"
+        HorizontalOptions="Start"
+        VerticalOptions="End">
+            <Label FontFamily="IRANSansWeb" FontSize="12" FontAttributes="Bold" TextColor="#48cae4"
+            Text="{Binding IncomeAmount, StringFormat='درآمد کل: {0:N0} تومان'}"/>
 
-    </VerticalStackLayout>
+            <Label FontFamily="IRANSansWeb" FontSize="12" FontAttributes="Bold" TextColor="OrangeRed"
+            Text="{Binding ExpenseAmount, StringFormat='هزینه کل: {0:N0} تومان'}"/>
+
+            <Label FontFamily="IRANSansWeb" FontSize="12" FontAttributes="Bold" TextColor="GreenYellow"
+            Text="{Binding BalanceAmount, StringFormat='سود: {0:N0} تومان'}"/>
+
+        </VerticalStackLayout>
+
+        <!-- Popup نیمه‌شفاف -->
+        <Grid IsVisible="{Binding IsDetailsVisible}" BackgroundColor="#AA000000">
+            <Border Padding="16" StrokeShape="RoundRectangle 12" BackgroundColor="White"
+            HorizontalOptions="Center" VerticalOptions="Center"
+            WidthRequest="300">
+                <Grid RowDefinitions="Auto,*" RowSpacing="20">
+                    <!-- ScrollView متن -->
+                    <ScrollView Grid.Row="0" VerticalScrollBarVisibility="Always" MaximumHeightRequest="250">
+                        <Label Text="{Binding DetailsText}" 
+                        TextColor="Black"
+                        FontFamily="IRANSansWeb"
+                        LineBreakMode="WordWrap"/>
+                    </ScrollView>
+
+                    <!-- دکمه بستن همیشه پایین -->
+                    <Button Grid.Row="1" Text="بستن" Command="{Binding CloseDetailsCommand}" 
+                    BackgroundColor="Crimson" TextColor="White" FontFamily="IRANSansWeb"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
 </ContentPage>

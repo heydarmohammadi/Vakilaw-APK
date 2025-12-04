@@ -9,10 +9,10 @@ public partial class AddCasePopup : PopupPage
 {
     public event Action<Case> CaseCreated;
 
-    public AddCasePopup(Client client)
+    public AddCasePopup(Client client, ClientsAndCasesViewModel clientsAndCasesViewModel)
     {
         InitializeComponent();
-        BindingContext = new AddCasePopupViewModel(this, client);
+        BindingContext = new AddCasePopupViewModel(this, clientsAndCasesViewModel, client);
 
         LocalizationService.Instance.UpdateFlowDirection(this);
         LocalizationService.Instance.LanguageChanged += () =>

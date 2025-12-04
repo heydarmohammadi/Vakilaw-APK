@@ -56,6 +56,48 @@ public class CaseService
         }
     }
 
+    public List<Case> GetAllCases()
+    {
+        var cases = new List<Case>();
+
+        using var connection = _dbService.GetConnection();
+        connection.Open();
+
+        var cmd = connection.CreateCommand();
+        cmd.CommandText = "SELECT * FROM Cases ORDER BY Id DESC";
+
+        using var reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            var caseItem = new Case
+            {
+                Id = reader.GetInt32(0),
+                Title = reader.GetString(1),
+                CaseNumber = reader.GetString(2),
+                CourtName = reader.GetString(3),
+                JudgeName = reader.GetString(4),
+                StartDate = reader.GetString(5),
+                EndDate = string.IsNullOrEmpty(reader.GetString(6)) ? null : reader.GetString(6),
+                Status = reader.GetString(7),
+                Description = reader.GetString(8),
+                ClientId = reader.GetInt32(9),
+            };
+
+            // بارگذاری موکل
+            var clientService = new ClientService(_dbService);
+            caseItem.Client = clientService.GetClientById(caseItem.ClientId);
+
+            // بارگذاری پیوست‌ها
+            caseItem.CaseAttachments = GetAttachmentsByCase(caseItem.Id);
+
+            cases.Add(caseItem);
+        }
+
+        return cases;
+    }
+
+
+
     public List<Case> GetCasesByClient(int clientId)
     {
         var cases = new List<Case>();
@@ -121,6 +163,7 @@ public class CaseService
 
             // ✅ اضافه کردن فایل‌های پیوست
             caseItem.CaseAttachments = GetAttachmentsByCase(caseItem.Id);
+            caseItem.Client = new ClientService(_dbService).GetClientById(caseItem.ClientId);
 
             return caseItem;
         }

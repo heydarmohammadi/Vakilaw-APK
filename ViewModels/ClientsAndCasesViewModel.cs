@@ -75,10 +75,16 @@ namespace Vakilaw.ViewModels
             CountsLabel = $"تعداد پرونده‌ها: {await _caseService.GetCasesCount()}";
         }
 
-        private async Task LoadCountsAsync()
+        public async Task LoadCountsAsync()
         {
             var count = await _clientService.GetClientsCount();
             CountsLabel = $"تعداد موکل‌ها: {count}";
+        }
+
+        public async Task LoadCaseCountsAsync()
+        {
+            var count = await _caseService.GetCasesCount();
+            CountsLabel = $"تعداد پرونده‌ها: {count}";
         }
         #endregion
 
@@ -121,7 +127,7 @@ namespace Vakilaw.ViewModels
             if (newClient == null) return;
             var wrapper = new ClientWithCasesViewModel(newClient, _clientService, _caseService, this);
             ClientsWithCases.Add(wrapper);
-            FullName = NationalCode = PhoneNumber = Address = ClientDescription = string.Empty;
+            FullName = NationalCode = PhoneNumber = Address = ClientDescription = string.Empty;           
         }
 
         [RelayCommand]
@@ -145,7 +151,7 @@ namespace Vakilaw.ViewModels
         [RelayCommand]
         private async Task ShowAddClientPopup()
         {
-            var popup = new AddClientPopup(_clientService);
+            var popup = new AddClientPopup(_clientService , this);
             popup.ClientCreated += newClient =>
             {
                 var wrapper = new ClientWithCasesViewModel(newClient, _clientService, _caseService, this);
@@ -188,7 +194,7 @@ namespace Vakilaw.ViewModels
 
             // ✅ ذخیره پرونده و Attachments فقط اینجا
             await _caseService.AddCase(caseItem);
-
+            
             // اضافه کردن به Wrapper فقط برای UI
             var wrapper = ClientsWithCases.FirstOrDefault(w => w.Client.Id == caseItem.ClientId);
             if (wrapper != null)
@@ -199,8 +205,7 @@ namespace Vakilaw.ViewModels
             // ریست فرم
             Title = CaseNumber = CourtName = JudgeName = Status = CaseDescription = string.Empty;
             EndDate = null;
-
-            await _caseService.GetCasesCount();
+         
             await SearchCases();
         }
 
@@ -242,7 +247,7 @@ namespace Vakilaw.ViewModels
         {
             if (SelectedClient == null) return;
 
-            var popup = new AddCasePopup(SelectedClient); // نیازی به CaseService نداریم چون ViewModel آن داخل Popup ساخته می‌شود
+            var popup = new AddCasePopup(SelectedClient , this); // نیازی به CaseService نداریم چون ViewModel آن داخل Popup ساخته می‌شود
             popup.CaseCreated += async newCase =>
             {
                 // ذخیره پرونده در DB

@@ -1,5 +1,6 @@
 ﻿using Mopups.Pages;
 using Mopups.Services;
+using System.Globalization;
 using Vakilaw.Services;
 using Vakilaw.ViewModels;
 
@@ -7,50 +8,35 @@ namespace Vakilaw.Views.Popups;
 
 public partial class AddTransactionPopup : PopupPage
 {
-    public AddTransactionPopup(TransactionService service, Func<Task> onAdded)
+    public AddTransactionPopup(TransactionService service, TransactionsVM transactionsVM, Func<Task> onAdded)
     {
         InitializeComponent();
-        BindingContext = new AddTransactionPopupVM(service, async () =>
+
+        BindingContext = new AddTransactionPopupVM(service, transactionsVM, async () =>
         {
             await onAdded();
             await MopupService.Instance.PopAsync(); // بستن پاپ‌آپ بعد از ذخیره
         });
     }
 
-    private bool _isUpdating = false;
-
-    private void AmountEntry_TextChanged(object sender, TextChangedEventArgs e)
+    // اینجا متد Event Handler را اضافه می‌کنیم
+    private void AmountEntry_Unfocused(object sender, FocusEventArgs e)
     {
-        if (_isUpdating) return;
+        var vm = BindingContext as AddTransactionPopupVM;
+        if (vm == null) return;
 
-        var entry = (Entry)sender;
-        if (string.IsNullOrWhiteSpace(entry.Text))
-            return;
-
-        // حذف هر چیزی غیر از عدد
-        string numeric = new string(entry.Text.Where(char.IsDigit).ToArray());
-
-        if (string.IsNullOrEmpty(numeric))
+        if (double.TryParse(vm.AmountText?.Replace("تومان", "").Trim(),
+                            NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands,
+                            CultureInfo.InvariantCulture,
+                            out double val))
         {
-            entry.Text = "";
-            return;
+            vm.AmountText = val.ToString("N0", CultureInfo.InvariantCulture) + " تومان";
+            vm.Amount = (decimal)val; // مقدار واقعی برای ذخیره در دیتابیس
         }
-
-        if (long.TryParse(numeric, out long value))
+        else
         {
-            _isUpdating = true;
-
-            string formatted = string.Format("{0:N0}", value);
-            entry.Text = formatted;
-
-            // ست کردن مکان‌نما، فقط اگر طول معتبر بود
-            int newPos = formatted.Length;
-            if (newPos <= entry.Text.Length)
-                entry.CursorPosition = newPos;
-
-            _isUpdating = false;
+            vm.AmountText = "";
+            vm.Amount = 0;
         }
     }
-
-
 }

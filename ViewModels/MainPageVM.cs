@@ -225,7 +225,7 @@ public partial class MainPageVM : ObservableObject
     [RelayCommand] public async Task SMSPanelPageAsync() => await Shell.Current.GoToAsync("SMSPanelPage");
     //[RelayCommand] public async Task SMSPanelPageAsync() => await Toast.Make("برای فعال سازی این بخش با توسعه دهنده در ارتباط باشید", ToastDuration.Long).Show(); /*await Shell.Current.GoToAsync("SMSPanelPage");*/
     [RelayCommand] public async Task TransactionsPageAsync() => await Shell.Current.GoToAsync("TransactionsPage");
-
+    [RelayCommand] public async Task ReportsPageAsync() => await Shell.Current.GoToAsync("ReportsPage");
     [RelayCommand] public async Task OpenAdlIranSiteAsync() => await Launcher.OpenAsync("https://adliran.ir/");
     [RelayCommand] private async Task HamiVakilAsync() => await Launcher.OpenAsync("https://search-hamivakil.ir/");
     #endregion
