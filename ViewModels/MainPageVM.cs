@@ -269,6 +269,13 @@ public partial class MainPageVM : ObservableObject
     #endregion
 
     #region Toggle Panels
+
+    private double _addButtonTranslationY = -15;
+    public double AddButtonTranslationY
+    {
+        get => _addButtonTranslationY;
+        set => SetProperty(ref _addButtonTranslationY, value);
+    }
     [RelayCommand]
     private async Task SelectTab(string tabName)
     {
@@ -276,7 +283,7 @@ public partial class MainPageVM : ObservableObject
 
         switch (tabName)
         {
-            case "Home": await ToggleHomeAsync(); break;
+            case "Home": AddButtonTranslationY = -15; await ToggleHomeAsync(); break;
             case "AdlIran": await OpenAdlIranSiteAsync(); break;
             case "Bookmarks": await ToggleBookmarkPanelAsync(); break;
             case "Settings": await ToggleSettingsPanelAsync(); break;
@@ -313,38 +320,71 @@ public partial class MainPageVM : ObservableObject
     public async Task ToggleLawyersListAsync()
     {
         if (IsLawyersListVisible)
+        {
             await SlideOutPanel(LawyersListPanelRef);
+            IsLawyersListVisible = false;
+            AddButtonTranslationY = -15; // دکمه وسط بالا می‌رود
+        }
         else
+        {
             await SlideInPanel(LawyersListPanelRef);
+            IsLawyersListVisible = true;
+            AddButtonTranslationY = 0; // دکمه وسط پایین می‌رود
+        }
 
-        IsLawyersListVisible = !IsLawyersListVisible;
+        // ← این خط را حذف کن:
+        // IsLawyersListVisible = !IsLawyersListVisible;
+    }
+
+
+    [RelayCommand]
+    public async Task ToggleSettingsPanelAsync()
+    {
+        if (IsSettingsVisible)
+        {
+            await SlideOutPanel(SettingsPanelRef);
+            IsSettingsVisible = false;
+            AddButtonTranslationY = -15; // دکمه وسط بالا می‌رود
+        }
+        else
+        {
+            await SlideInPanel(SettingsPanelRef);
+            IsSettingsVisible = true;
+            AddButtonTranslationY = 0; // دکمه وسط پایین می‌رود
+        }
+
+        // سایر پنل‌ها را ببند
+        if (IsBookmarkVisible)
+        {
+            await SlideOutPanel(BookmarkPanelRef);
+            IsBookmarkVisible = false;
+        }
     }
 
     [RelayCommand]
     public async Task ToggleBookmarkPanelAsync()
     {
         if (IsBookmarkVisible)
+        {
             await SlideOutPanel(BookmarkPanelRef);
+            IsBookmarkVisible = false;
+            AddButtonTranslationY = -15; // دکمه وسط بالا می‌رود
+        }
         else
+        {
             await SlideInPanel(BookmarkPanelRef);
-        if (IsSettingsVisible)
-            await SlideOutPanel(SettingsPanelRef);
+            IsBookmarkVisible = true;
+            AddButtonTranslationY = 0; // دکمه وسط پایین می‌رود
+        }
 
-        IsBookmarkVisible = !IsBookmarkVisible;
+        // سایر پنل‌ها را ببند
+        if (IsSettingsVisible)
+        {
+            await SlideOutPanel(SettingsPanelRef);
+            IsSettingsVisible = false;
+        }
     }
 
-    [RelayCommand]
-    public async Task ToggleSettingsPanelAsync()
-    {
-        if (IsSettingsVisible)
-            await SlideOutPanel(SettingsPanelRef);
-        else
-            await SlideInPanel(SettingsPanelRef);
-        if (IsBookmarkVisible)
-            await SlideOutPanel(BookmarkPanelRef);
-
-        IsSettingsVisible = !IsSettingsVisible;
-    }
     #endregion
 
     #region Animation Helpers

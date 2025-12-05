@@ -64,19 +64,36 @@
                 <!-- لیست وکلا -->
                 <Border StrokeShape="12" Padding="0" BackgroundColor="#003049">
                     <Grid ColumnDefinitions="Auto,*" Padding="15">
+                        <Grid.Triggers>
+                            <DataTrigger TargetType="Grid"
+                            Binding="{Binding IsLawyersListVisible}"
+                            Value="True">
+                                <!-- Scale کارت هنگام باز بودن -->
+                                <Setter Property="Scale" Value="0.95"/>
+                            </DataTrigger>
+                        </Grid.Triggers>
+
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ToggleLawyersListCommand}"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="consult.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
-                        <Label Text="لیست وکلای پایه یک دادگستری" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
+
+                        <Image Source="consult.png"
+                        WidthRequest="28"
+                        HeightRequest="28"
+                        VerticalOptions="Center"/>
+                        <Label Text="لیست وکلای پایه یک دادگستری"
+                        FontSize="16"
+                        VerticalOptions="Center"
+                        Grid.Column="1"
+                        Margin="10,0,0,0"/>
                     </Grid>
                 </Border>
 
                 <!-- بانک قوانین -->
-                <Border StrokeShape="12" Padding="0" BackgroundColor="#003049">
+                <Border x:Name="BorderLawBank" StrokeShape="12" Padding="0" BackgroundColor="#003049">
                     <Grid ColumnDefinitions="Auto,*" Padding="15">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding LawBankPageCommand}"/>
+                            <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="LawBank"/>
                         </Grid.GestureRecognizers>
                         <Image Source="lawbank.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
                         <Label Text="بانک قوانین حقوقی" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
@@ -84,10 +101,10 @@
                 </Border>
 
                 <!-- مدیریت موکل‌ها -->
-                <Border StrokeShape="12" Padding="15" BackgroundColor="#003049"> <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
+                <Border x:Name="BorderClients" StrokeShape="12" Padding="15" BackgroundColor="#003049">
                     <Grid ColumnDefinitions="Auto,*">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ClientsAndCasesPageCommand}"/>
+                            <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="Clients"/>
                         </Grid.GestureRecognizers>
                         <Image Source="clients.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
                         <Label Text="مدیریت موکل‌ ها و پرونده ها" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
@@ -95,11 +112,10 @@
                 </Border>
 
                 <!-- مدیریت قراردادها -->
-                <Border StrokeShape="12" Padding="15" BackgroundColor="#003049">
-                    <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
+                <Border x:Name="BorderDocuments" StrokeShape="12" Padding="15" BackgroundColor="#003049">
                     <Grid ColumnDefinitions="Auto,*">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding DocumentsPageCommand}"/>
+                            <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="Documents"/>
                         </Grid.GestureRecognizers>
                         <Image Source="contracts.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
                         <Label Text="مدیریت قراردادها و لایحه ها" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
@@ -107,10 +123,10 @@
                 </Border>
 
                 <!-- پیامک -->
-                <Border StrokeShape="12" Padding="15" BackgroundColor="#003049"> <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
+                <Border x:Name="BorderSMS" StrokeShape="12" Padding="15" BackgroundColor="#003049">
                     <Grid ColumnDefinitions="Auto,*">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SMSPanelPageCommand}"/>
+                            <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="SMS"/>
                         </Grid.GestureRecognizers>
                         <HorizontalStackLayout>
                             <Image Source="sms.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
@@ -121,24 +137,21 @@
                 </Border>
 
                 <!-- مدیریت مالی -->
-                <Border StrokeShape="12" Padding="15" BackgroundColor="#003049">
-                    <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
+                <Border x:Name="BorderTransactions" StrokeShape="12" Padding="15" BackgroundColor="#003049">
                     <Grid ColumnDefinitions="Auto,*">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding TransactionsPageCommand}"/>
+                            <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="Transactions"/>
                         </Grid.GestureRecognizers>
                         <Image Source="financial_management.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
                         <Label Text="مدیریت مالی و حسابداری" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
                     </Grid>
                 </Border>
 
-
                 <!-- گزارش‌ها -->
-                <Border StrokeShape="12" Padding="15" BackgroundColor="#003049">
-                    <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
+                <Border x:Name="BorderReports" StrokeShape="12" Padding="15" BackgroundColor="#003049">
                     <Grid ColumnDefinitions="Auto,*">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ReportsPageCommand}"/>
+                            <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="Reports"/>
                         </Grid.GestureRecognizers>
                         <Image Source="reports.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
                         <Label Text="گزارش ها" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
@@ -289,25 +302,26 @@
                 <Border WidthRequest="65"
                 HeightRequest="65"
                 StrokeShape="32"
-                BackgroundColor="#343a40"           
-                TranslationY="-15"
+                BackgroundColor="#343a40"
+                TranslationY="{Binding AddButtonTranslationY}"
                 Padding="0">
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectTabCommand}"
-                        CommandParameter="Add" />
+                                  CommandParameter="Add" />
                     </Border.GestureRecognizers>
+
                     <Image Source="add.png"
-                   WidthRequest="30"
-                   HeightRequest="30"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center">
+                    WidthRequest="30"
+                    HeightRequest="30"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Setter Property="Opacity" Value="0.9" />
                                 <Style.Triggers>
                                     <DataTrigger TargetType="Image"
-                                         Binding="{Binding SelectedTab}"
-                                         Value="Add">
+                                     Binding="{Binding SelectedTab}"
+                                     Value="Add">
                                         <Setter Property="Scale" Value="1.05" />
                                     </DataTrigger>
                                 </Style.Triggers>
