@@ -6,11 +6,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Mopups.Services;
+using SQLitePCL;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Vakilaw.Models;
 using Vakilaw.Models.Messages;
 using Vakilaw.Services;
+using Vakilaw.Views;
 using Vakilaw.Views.Popups;
 
 namespace Vakilaw.ViewModels;
@@ -22,6 +24,7 @@ public partial class MainPageVM : ObservableObject
     private readonly LawService _lawService;
     private readonly LawyerService _lawyerService;
     private readonly LicenseService _licenseService;
+    private readonly ReminderService _reminderService;
 
     [ObservableProperty] private ObservableCollection<LawItem> bookmarkedLaws;
     [ObservableProperty] private ObservableCollection<Lawyer> lawyers;
@@ -59,7 +62,7 @@ public partial class MainPageVM : ObservableObject
     /// </summary>
     public bool CanUseLawyerFeatures => IsLawyer && IsLawyerSubscriptionActive;
 
-    public MainPageVM(UserService userService, SmsService otpService, LawService lawService, LawyerService lawyerService, LicenseService licenseService)
+    public MainPageVM(UserService userService, SmsService otpService, LawService lawService, LawyerService lawyerService, LicenseService licenseService, ReminderService reminderService)
     {
         _userService = userService;
         _otpService = otpService;
@@ -122,6 +125,14 @@ public partial class MainPageVM : ObservableObject
 
         // بررسی وضعیت اشتراک هنگام لود شدن
         Task.Run(async () => await CheckLicenseAsync());
+
+        _reminderService = reminderService ?? throw new ArgumentNullException(nameof(reminderService));
+        //vm.ApplyTheme(selectedTheme);
+        WeakReferenceMessenger.Default.Register<NoteAddedMessage>(this, async (r, m) =>
+        {
+            await Task.Run(() => LoadNotesCommand.Execute(null));
+        });
+        Task.Run(() => LoadNotesCommand.Execute(null));
     }
 
     #region License & Trial
@@ -382,6 +393,111 @@ public partial class MainPageVM : ObservableObject
         {
             await SlideOutPanel(SettingsPanelRef);
             IsSettingsVisible = false;
+        }
+    }
+
+    private bool _isAddMenuVisible;
+    public Border AddButtonRef { get; set; }
+
+    public bool IsAddMenuVisible
+    {
+        get => _isAddMenuVisible;
+        set => SetProperty(ref _isAddMenuVisible, value);
+    }
+
+    private double _addMenuOpacity = 0;
+    public double AddMenuOpacity
+    {
+        get => _addMenuOpacity;
+        set => SetProperty(ref _addMenuOpacity, value);
+    }
+
+    private double _addMenuTranslationY = 20;
+    public double AddMenuTranslationY
+    {
+        get => _addMenuTranslationY;
+        set => SetProperty(ref _addMenuTranslationY, value);
+    }
+
+    [RelayCommand]
+    public async Task ToggleAddMenuAsync()
+    {
+        if (IsAddMenuVisible)
+        {
+            // منو باز است -> آن را به آرامی ببند
+            await AnimateAddMenuAsync(open: false);
+            IsAddMenuVisible = false;
+
+            // برگشت دکمه به اندازه معمولی
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                VisualStateManager.GoToState(AddButtonRef, "Normal");
+            });
+        }
+        else
+        {
+            // منو بسته است -> ابتدا Visible شود
+            IsAddMenuVisible = true;
+            AddMenuOpacity = 0;
+            AddMenuTranslationY = 20;
+
+            // اجازه بده UI آپدیت شود
+            await Task.Yield();
+
+            // انیمیشن باز شدن
+            await AnimateAddMenuAsync(open: true);
+
+            // بزرگ شدن دکمه
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                VisualStateManager.GoToState(AddButtonRef, "Active");
+            });
+        }
+    }
+
+    [RelayCommand]
+    private async Task OpenReminderAsync()
+    {
+        var vm = new ReminderViewModel(_reminderService);
+        var popup = new ReminderPopup(vm);
+
+        popup.OnSaved += reminder =>
+        {
+            // اینجا ذخیره در SQLite یا ارسال نوتیفیکیشن یا...
+            Debug.WriteLine("Reminder Saved:");
+            Debug.WriteLine(reminder.Title);
+        };
+
+        await MopupService.Instance.PushAsync(popup);
+    }
+
+
+    /// <summary>
+    /// انیمیشن باز و بسته شدن منو
+    /// </summary>
+    private async Task AnimateAddMenuAsync(bool open)
+    {
+        int duration = 200; // مدت زمان انیمیشن به میلی‌ثانیه
+        int steps = 30;     // تعداد فریم‌ها
+
+        double startOpacity = open ? 0 : 1;
+        double endOpacity = open ? 1 : 0;
+
+        double startTranslation = open ? 20 : 0;
+        double endTranslation = open ? 0 : 20;
+
+        for (int i = 0; i <= steps; i++)
+        {
+            double t = (double)i / steps;
+            // easing ساده (CubicInOut)
+            double easedT = t < 0.5
+                ? 4 * t * t * t
+                : 1 - Math.Pow(-2 * t + 2, 3) / 2;
+
+            AddMenuOpacity = startOpacity + (endOpacity - startOpacity) * easedT;
+            AddMenuTranslationY = startTranslation + (endTranslation - startTranslation) * easedT;
+
+            await Task.Delay(duration / steps);
         }
     }
 

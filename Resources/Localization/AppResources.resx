@@ -190,7 +190,7 @@
     <value>⏰ تاریخ یادآوری:</value>
   </data>
   <data name="Dateofnoteregistration" xml:space="preserve">
-    <value>تاریخ ثبت یادداشت: </value>
+    <value>تاریخ ثبت جلسه: </value>
   </data>
   <data name="ClosePopup" xml:space="preserve">
     <value>بستن</value>
@@ -219,14 +219,14 @@
   <data name="IsReminderSet" xml:space="preserve">
     <value>یادآوری شود؟</value>
   </data>
-  <data name="SaveNote" xml:space="preserve">
-    <value>ثبت یادداشت</value>
+  <data name="SaveMeeting" xml:space="preserve">
+    <value>ثبت جلسه</value>
   </data>
   <data name="TitlePlaceholder" xml:space="preserve">
-    <value>عنوان یادداشت ...</value>
+    <value>مثلا جلسه دادگاهی شعبه 5 ...</value>
   </data>
   <data name="DescriptionPlaceholder" xml:space="preserve">
-    <value>متن کامل یادداشت را وارد کنید ...</value>
+    <value>توضیحات کامل خود را را وارد کنید ...</value>
   </data>
   <data name="SelectCity" xml:space="preserve">
     <value>انتخاب شهر</value>
@@ -261,8 +261,8 @@
   <data name="EnterDateToast" xml:space="preserve">
     <value>تاریخ را وارد کنید!</value>
   </data>
-  <data name="SuccessAddNoteToast" xml:space="preserve">
-    <value>یادداشت با موفقیت ذخیره شد</value>
+  <data name="SuccessAddMeetingToast" xml:space="preserve">
+    <value>یادآوری جلسه با موفقیت ثبت شد</value>
   </data>
   <data name="AddNoteRequiredToast" xml:space="preserve">
     <value>موارد ضروری را وارد کنید!</value>
@@ -377,5 +377,26 @@
   </data>
   <data name="CasePlaceHolderEndDate" xml:space="preserve">
     <value>تاریخ اختتام: (مثال: 1404/09/25)</value>
+  </data>
+  <data name="ReminderDate" xml:space="preserve">
+    <value>تاریخ و ساعت یادآوری:</value>
+  </data>
+  <data name="DateAndTimePlaceholder" xml:space="preserve">
+    <value>مثال: 16:30 1404/09/20</value>
+  </data>
+  <data name="Educational" xml:space="preserve">
+    <value>تحصیلی</value>
+  </data>
+  <data name="Work" xml:space="preserve">
+    <value>کاری</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>شخصی</value>
+  </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>انتخاب دسته بندی</value>
+  </data>
+  <data name="SearchNote" xml:space="preserve">
+    <value>جستجوی جلسه ...</value>
   </data>
 </root>

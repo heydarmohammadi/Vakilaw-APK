@@ -116,6 +116,17 @@ public class DatabaseService
             Description TEXT
         );
 
+        CREATE TABLE IF NOT EXISTS Reminders (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        Title TEXT NOT NULL,
+                        Description TEXT NOT NULL,
+                        Category TEXT NOT NULL,                       
+                        ReminderDate TEXT,       
+                        IsReminderSet TEXT,
+                        IsReminderDone TEXT,
+                        CreatedAt TEXT NOT NULL
+        );
+
         CREATE INDEX IF NOT EXISTS idx_clients_fullname ON Clients (FullName);
     ";
         await cmd.ExecuteNonQueryAsync();

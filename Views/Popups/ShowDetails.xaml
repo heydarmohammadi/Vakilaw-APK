@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Vakilaw.MarkupExtensions"
+    xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+    BackgroundColor="#80000000" x:Class="Vakilaw.Views.Popups.ShowDetails">
+
+    <Border
+        x:Name="PopupContainer"
+        Padding="20" StrokeShape="RoundRectangle 10"
+        StrokeThickness="2"
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        BackgroundColor="White"
+        WidthRequest="320"
+        MaximumHeightRequest="350"      
+        Opacity="0"
+        Scale="0.8"
+        >
+
+        <VerticalStackLayout Spacing="15">
+            <Label Text="{local:Loc PopupDescription}" TextColor="Black" FontSize="14" HorizontalOptions="Center" FontAttributes="Bold"/>
+            <ScrollView HeightRequest="100">
+                <VerticalStackLayout Padding="10">
+
+                    <Label Text="{Binding Description}"
+                    FontSize="14"
+                    FlowDirection="RightToLeft"
+                    HorizontalTextAlignment="Justify"
+                    TextColor="#555"
+                    LineBreakMode="WordWrap" />
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <HorizontalStackLayout FlowDirection="RightToLeft">
+                <Label Text="{local:Loc PopupReminder}" FontFamily="IRANSansWeb" FontSize="16" FontAttributes="Bold"
+                TextColor="ForestGreen"
+                HorizontalOptions="Center" />
+                <Label Text="{Binding ReminderDateShamsi}"
+                FontFamily="IRANSansWeb" FontSize="16" FontAttributes="Bold"
+                TextColor="Crimson"
+                HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout FlowDirection="RightToLeft">
+                <Label Text="{local:Loc Dateofnoteregistration}" FontFamily="IRANSansWeb" FontSize="16" FontAttributes="Bold"
+                TextColor="DodgerBlue"
+                HorizontalOptions="Center" />
+                <Label Text="{Binding CreatedAtShamsi}"
+                FontFamily="IRANSansWeb" FontSize="14" FontAttributes="Bold"
+                TextColor="DodgerBlue"
+                HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+            <Button Text="{local:Loc ClosePopup}"
+            BackgroundColor="#1976d2"
+            TextColor="White" Clicked="ClosePopup"
+            />
+        </VerticalStackLayout>
+    </Border>
+</mopups:PopupPage>

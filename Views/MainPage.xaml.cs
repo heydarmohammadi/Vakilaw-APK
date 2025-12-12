@@ -4,11 +4,18 @@ using Vakilaw.ViewModels;
 namespace Vakilaw.Views
 {
     public partial class MainPage : ContentPage
-    {     
-        public MainPage(MainPageVM vm)
+    {
+
+        private readonly ClientsAndCasesViewModel _vm1;
+        private readonly TransactionsVM _vm2;
+
+        public MainPage(MainPageVM vm, ClientsAndCasesViewModel vm1 , TransactionsVM vm2)
         {
             InitializeComponent();
             BindingContext = vm;
+            _vm1 = vm1;
+            _vm2 = vm2;
+            vm.AddButtonRef = AddButton;
 
             // رجیستر پنل‌ها برای انیمیشن
             vm.LawyersListPanelRef = LawyersListPanel;
@@ -20,6 +27,7 @@ namespace Vakilaw.Views
             {
                 LocalizationService.Instance.UpdateFlowDirection(this);
             };
+            _vm2 = vm2;
         }
         private async void Card_Tapped(object sender, EventArgs e)
         {
@@ -74,14 +82,31 @@ namespace Vakilaw.Views
                                 if (vm.ReportsPageCommand.CanExecute(null))
                                     vm.ReportsPageCommand.Execute(null);
                                 break;
+                            case "OpenReminder":
+                                if (vm.OpenReminderCommand.CanExecute(null))
+                                    vm.OpenReminderCommand.Execute(null);
+                                break;
+                            case "AddClient":
+                                if (_vm1.ShowAddClientPopupCommand.CanExecute(null))
+                                    _vm1.ShowAddClientPopupCommand.Execute(null);
+                                break;
+                            case "AddCase":
+                                if (vm.ClientsAndCasesPageCommand.CanExecute(null))
+                                    vm.ClientsAndCasesPageCommand.Execute(null);
+                               
+                                break;
+                            case "AddTransaction":
+                                if (_vm2.ShowAddTransactionPopupCommand.CanExecute(null))
+                                    _vm2.ShowAddTransactionPopupCommand.Execute(null);
+                                break;
                         }
-                    }
+                    }                  
                 }
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine("Card_Tapped Error: " + ex.Message);
                 }
             }
-        }
+        }   
     }
 }

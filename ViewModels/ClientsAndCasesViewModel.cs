@@ -68,7 +68,7 @@ namespace Vakilaw.ViewModels
         }
 
         [RelayCommand]
-        private async Task ShowCases()
+        public async Task ShowCases()
         {
             IsClientsVisible = false;
             IsCasesVisible = true;

@@ -49,7 +49,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<LawService>(s => new LawService(s.GetRequiredService<DatabaseService>()));
         builder.Services.AddSingleton<LawImporter>(s => new LawImporter(s.GetRequiredService<LawService>()));
         builder.Services.AddSingleton<UserService>();       
-        builder.Services.AddSingleton<SmsService>();      
+        builder.Services.AddSingleton<SmsService>();
+        builder.Services.AddSingleton<ReminderService>();
         builder.Services.AddSingleton<TransactionService>();
         builder.Services.AddSingleton(sp =>
         new LicenseService(sp.GetRequiredService<DatabaseService>(), "<PUBLIC_KEY_BASE64_HERE>"));

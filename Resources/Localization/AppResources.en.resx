@@ -190,7 +190,7 @@
     <value>Reminder Date:</value>
   </data>
   <data name="Dateofnoteregistration" xml:space="preserve">
-    <value>Registration Date:</value>
+    <value>Registration Meeting Date:</value>
   </data>
   <data name="ClosePopup" xml:space="preserve">
     <value>Close</value>
@@ -219,14 +219,14 @@
   <data name="IsReminderSet" xml:space="preserve">
     <value>Set Reminder?</value>
   </data>
-  <data name="SaveNote" xml:space="preserve">
-    <value>Add Note</value>
+  <data name="SaveMeeting" xml:space="preserve">
+    <value>Add Meeting</value>
   </data>
   <data name="TitlePlaceholder" xml:space="preserve">
-    <value>Note Title ...</value>
+    <value>Meeting Title ...</value>
   </data>
   <data name="DescriptionPlaceholder" xml:space="preserve">
-    <value>Enter the full text of the note ...</value>
+    <value>Enter the full text of the meeting ...</value>
   </data>
   <data name="SelectCity" xml:space="preserve">
     <value>Select city</value>
@@ -261,8 +261,8 @@
   <data name="EnterDateToast" xml:space="preserve">
     <value>Enter the date!</value>
   </data>
-  <data name="SuccessAddNoteToast" xml:space="preserve">
-    <value>Note saved successfully</value>
+  <data name="SuccessAddMeetingToast" xml:space="preserve">
+    <value>Meeting saved successfully</value>
   </data>
   <data name="AddNoteRequiredToast" xml:space="preserve">
     <value>Enter the essentials!</value>
@@ -377,5 +377,26 @@
   </data>
   <data name="CasePlaceHolderEndDate" xml:space="preserve">
     <value>Closing date: (example: 09/25/1404)</value>
+  </data>
+  <data name="ReminderDate" xml:space="preserve">
+    <value>Reminder date and time:</value>
+  </data>
+  <data name="DateAndTimePlaceholder" xml:space="preserve">
+    <value>example: 16:30 1404/09/20</value>
+  </data>
+  <data name="Educational" xml:space="preserve">
+    <value>Educational</value>
+  </data>
+  <data name="Work" xml:space="preserve">
+    <value>Work</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>Personal</value>
+  </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>Select Category</value>
+  </data>
+  <data name="SearchNote" xml:space="preserve">
+    <value>Search Meeting ...</value>
   </data>
 </root>

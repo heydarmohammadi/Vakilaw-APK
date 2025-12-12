@@ -5,8 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:Vakilaw.ViewModels"
     xmlns:conv="clr-namespace:Vakilaw.Converters"
-    BackgroundColor="#e9ecef"
-    Title="ارسال پیامک"
+     xmlns:local="clr-namespace:Vakilaw.MarkupExtensions"
+    BackgroundColor="#212529"
+    Title="پنل پیامکی و مدیریت جلسات"
     FlowDirection="RightToLeft">
 
     <ContentPage.Resources>
@@ -15,161 +16,394 @@
             <conv:NullToBoolConverter x:Key="NullToBoolConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <Grid RowDefinitions="Auto,*">
+        <Border StrokeShape="5" HorizontalOptions="Center">
+            <!-- 📌 منوی سمت راست -->
+            <HorizontalStackLayout BackgroundColor="#003566" Padding="10" Margin="5" Spacing="80">
 
-    <Grid>
-        <ScrollView>
-        <VerticalStackLayout Padding="12" Spacing="16">
+                <Button Text="پنل پیامکی"
+            Command="{Binding ShowSMSPanelsCommand}"
+            BackgroundColor="{Binding SelectedTab, Converter={StaticResource TabToColorConverter}, ConverterParameter=SMSPanel}"
+            TextColor="White"
+            FontAttributes="Bold"/>
 
-            <!-- کارت ارسال تکی -->
-            <Border StrokeShape="RoundRectangle 12" Padding="12" BackgroundColor="#343a40">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="ارسال پیامک تکی" FontFamily="IRANSansWeb"
-                           FontSize="18" FontAttributes="Bold"
-                           TextColor="GhostWhite" HorizontalOptions="Center"/>
+                <Button Text="مدیریت جلسات"
+            Command="{Binding ShowRemindersCommand}"
+            BackgroundColor="{Binding SelectedTab, Converter={StaticResource TabToColorConverter}, ConverterParameter=Reminder}"
+            TextColor="White"
+            FontAttributes="Bold"/>
 
-                    <Label Text="انتخاب موکل:" FontFamily="IRANSansWeb" FontAttributes="Bold" FontSize="14" TextColor="GhostWhite"/>
+            </HorizontalStackLayout>
 
-                    <Picker Title="انتخاب موکل"
-                            ItemsSource="{Binding Clients}"
-                            ItemDisplayBinding="{Binding FullName}"
-                            SelectedItem="{Binding SelectedClient}" 
-                            FontFamily="IRANSansWeb"/>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid x:Name="SMSPanel" IsVisible="{Binding IsContractsVisible}">
+                <ScrollView>
+                    <VerticalStackLayout Padding="12" Spacing="16">
+                        <!-- کارت ارسال تکی -->
+                        <Border StrokeShape="RoundRectangle 12" Padding="12" BackgroundColor="#343a40">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="ارسال پیامک تکی" FontFamily="IRANSansWeb"
+                                FontSize="18" FontAttributes="Bold"
+                                TextColor="GhostWhite" HorizontalOptions="Center"/>
 
-                    <Label Text="{Binding SelectedClient.PhoneNumber}" 
-                           FontFamily="IRANSansWeb"
-                           FontSize="13" FontAttributes="Bold"
-                           TextColor="GhostWhite"
-                           IsVisible="{Binding SelectedClient, Converter={StaticResource NullToBoolConverter}}" />
+                                <Label Text="انتخاب موکل:" FontFamily="IRANSansWeb" FontAttributes="Bold" FontSize="14" TextColor="GhostWhite"/>
 
-                    <Border StrokeShape="5">
-                        <Editor Text="{Binding SingleMessage}"
-                                AutoSize="TextChanges"
-                                HeightRequest="100"
+                                <Picker Title="انتخاب موکل"
+                                ItemsSource="{Binding Clients}"
+                                ItemDisplayBinding="{Binding FullName}"
+                                SelectedItem="{Binding SelectedClient}" 
+                                FontFamily="IRANSansWeb"/>
+
+                                <Label Text="{Binding SelectedClient.PhoneNumber}" 
                                 FontFamily="IRANSansWeb"
-                                Placeholder="متن پیام خود را بنویسید ..."
+                                FontSize="13" FontAttributes="Bold"
+                                TextColor="GhostWhite"
+                                IsVisible="{Binding SelectedClient, Converter={StaticResource NullToBoolConverter}}" />
+
+                                <Border StrokeShape="5">
+                                    <Editor Text="{Binding SingleMessage}"
+                                   AutoSize="TextChanges"
+                                   HeightRequest="100"
+                                   FontFamily="IRANSansWeb"
+                                   Placeholder="متن پیام خود را بنویسید ..."
+                                   TextColor="Black"
+                                   BackgroundColor="White"/>
+                                </Border>
+                                <Button Text="📤 ارسال پیامک" FontAttributes="Bold"
+                                Command="{Binding SendSingleSmsCommand}"
+                                BackgroundColor="Gold"
                                 TextColor="Black"
-                                BackgroundColor="White"/>
-                    </Border>
-                    <Button Text="📤 ارسال پیامک" FontAttributes="Bold"
-                            Command="{Binding SendSingleSmsCommand}"
-                            BackgroundColor="Gold"
-                            TextColor="Black"
-                            FontFamily="IRANSansWeb"
-                            HorizontalOptions="End"/>
-                </VerticalStackLayout>
-            </Border>
+                                FontFamily="IRANSansWeb"
+                                HorizontalOptions="End"/>
+                            </VerticalStackLayout>
+                        </Border>
 
-            <!-- کارت ارسال گروهی -->
-            <Border StrokeShape="RoundRectangle 12" Padding="12" BackgroundColor="#2b2d42">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="ارسال پیامک گروهی"
-                           FontFamily="IRANSansWeb" FontSize="18"
-                           FontAttributes="Bold"
-                           TextColor="Gold" HorizontalOptions="Center"/>
+                        <!-- کارت ارسال گروهی -->
+                        <Border StrokeShape="RoundRectangle 12" Padding="12" BackgroundColor="#2b2d42">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="ارسال پیامک گروهی"
+                                FontFamily="IRANSansWeb" FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="Gold" HorizontalOptions="Center"/>
 
-                    <!-- جستجو + انتخاب همه -->
-                    <VerticalStackLayout Spacing="8" VerticalOptions="Center">
-                        <Entry Placeholder="🔍 جستجو نام موکل یا تلفن همراه..." PlaceholderColor="DarkGray" FontFamily="IRANSansWeb" HorizontalOptions="Fill"
-                               Text="{Binding GroupSearchText, Mode=TwoWay}"/>
-                        <HorizontalStackLayout Spacing="4">
-                            <CheckBox IsChecked="{Binding IsAllSelected}"/>
-                            <Label Text="انتخاب همه" VerticalTextAlignment="Center" FontFamily="IRANSansWeb"/>
-                        </HorizontalStackLayout>
-                    </VerticalStackLayout>
+                                <!-- جستجو + انتخاب همه -->
+                                <VerticalStackLayout Spacing="8" VerticalOptions="Center">
+                                    <Entry Placeholder="🔍 جستجو نام موکل یا تلفن همراه..." PlaceholderColor="DarkGray" FontFamily="IRANSansWeb" HorizontalOptions="Fill"
+                                    Text="{Binding GroupSearchText, Mode=TwoWay}"/>
+                                    <HorizontalStackLayout Spacing="4">
+                                        <CheckBox IsChecked="{Binding IsAllSelected}"/>
+                                        <Label Text="انتخاب همه" VerticalTextAlignment="Center" FontFamily="IRANSansWeb"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
 
-                    <!-- لیست موکل‌ها -->
-                    <Border BackgroundColor="White" Padding="6" StrokeShape="RoundRectangle 6" HeightRequest="200">
-                        <CollectionView ItemsSource="{Binding FilteredClients}" SelectionMode="None">
+                                <!-- لیست موکل‌ها -->
+                                <Border BackgroundColor="White" Padding="6" StrokeShape="RoundRectangle 6" HeightRequest="200">
+                                    <CollectionView ItemsSource="{Binding FilteredClients}" SelectionMode="None">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <HorizontalStackLayout Spacing="10" Padding="4">
+                                                    <CheckBox Color="Black" IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalOptions="Center"/>
+                                                    <VerticalStackLayout Spacing="2">
+                                                        <Label Text="{Binding FullName}" TextColor="Black" FontFamily="IRANSansWeb" FontSize="14"/>
+                                                        <Label Text="{Binding PhoneNumber}" TextColor="Black" FontFamily="IRANSansWeb" FontSize="12"/>
+                                                    </VerticalStackLayout>
+                                                </HorizontalStackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </Border>
+
+                                <Border StrokeShape="5">
+                                    <Editor Text="{Binding GroupMessage}" AutoSize="TextChanges"
+                                    HeightRequest="100"
+                                    FontFamily="IRANSansWeb"
+                                    Placeholder="متن پیام خود را بنویسید ..."
+                                    BackgroundColor="White"
+                                    TextColor="Black"/>
+                                </Border>
+                                <Button Text="📤 ارسال گروهی" FontAttributes="Bold"
+                                Command="{Binding SendGroupSmsCommand}"
+                                BackgroundColor="Gold"
+                                TextColor="Black"
+                                FontFamily="IRANSansWeb"
+                                HorizontalOptions="End"/>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!-- تاریخچه پیام‌ها -->
+                        <Label Text="تاریخچه پیام‌ها" FontFamily="IRANSansWeb"
+                        FontAttributes="Bold" FontSize="16" TextColor="White"/>
+
+                        <CollectionView ItemsSource="{Binding SmsHistory}" HeightRequest="220" SelectionMode="None" Margin="0,0,0,12">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <HorizontalStackLayout Spacing="10" Padding="4">
-                                        <CheckBox Color="Black" IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalOptions="Center"/>
-                                        <VerticalStackLayout Spacing="2">
-                                            <Label Text="{Binding FullName}" TextColor="Black" FontFamily="IRANSansWeb" FontSize="14"/>
-                                            <Label Text="{Binding PhoneNumber}" TextColor="Black" FontFamily="IRANSansWeb" FontSize="12"/>
-                                        </VerticalStackLayout>
-                                    </HorizontalStackLayout>
+                                    <Border BackgroundColor="White" Padding="10" StrokeShape="RoundRectangle 8" Margin="0,5">
+                                        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                                            <VerticalStackLayout>
+                                                <Label Grid.Column="0" Text="{Binding ClientName}" FontFamily="IRANSansWeb" FontSize="12" TextColor="Black" FontAttributes="Bold"/>
+                                                <Label Grid.Column="1" Text="{Binding PhoneNumber}" FontFamily="IRANSansWeb" FontSize="12" TextColor="Black" FontAttributes="Bold"/>
+                                            </VerticalStackLayout>
+                                            <HorizontalStackLayout Grid.Column="2" Spacing="15"  Margin="0,15,0,-15">
+                                                <Label Text="{Binding DateShamsi}" FontFamily="IRANSansWeb" FontSize="12" TextColor="Black"/>
+                                                <Label Text="{Binding StatusText}" FontFamily="IRANSansWeb" FontSize="12" TextColor="Green" FontAttributes="Bold"/>
+                                                <Button Text="👁" Margin="-10,-20,0,0" BackgroundColor="Transparent" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SmsPanelVM}}, Path=ShowSmsDetailsCommand}" CommandParameter="{Binding Id}" FontSize="20" FontFamily="IRANSansWeb"/>
+                                            </HorizontalStackLayout>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
+                    </VerticalStackLayout>
+                </ScrollView>
+
+                <!-- Popup نیمه‌شفاف -->
+                <Grid IsVisible="{Binding IsSingleDetailsVisible}" BackgroundColor="#AA000000">
+                    <Border Padding="16" StrokeShape="RoundRectangle 12" BackgroundColor="White"
+                    HorizontalOptions="Center" VerticalOptions="Center"
+                    WidthRequest="300">
+                        <Grid RowDefinitions="Auto,*" RowSpacing="20">
+                            <!-- ScrollView متن -->
+                            <ScrollView Grid.Row="0" VerticalScrollBarVisibility="Always" MaximumHeightRequest="250">
+                                <Label Text="{Binding SingleDetailsText}" 
+                         TextColor="Black"
+                         FontFamily="IRANSansWeb"
+                         LineBreakMode="WordWrap"/>
+                            </ScrollView>
+
+                            <!-- دکمه بستن همیشه پایین -->
+                            <Button Grid.Row="1" Text="بستن" Command="{Binding CloseSingleDetailsCommand}" 
+                            BackgroundColor="Gold" FontFamily="IRANSansWeb" TextColor="Black"/>
+                        </Grid>
                     </Border>
-
-                        <Border StrokeShape="5">
-                        <Editor Text="{Binding GroupMessage}" AutoSize="TextChanges"
-                            HeightRequest="100"
-                            FontFamily="IRANSansWeb"
-                            Placeholder="متن پیام خود را بنویسید ..."
-                            BackgroundColor="White"
-                            TextColor="Black"/>
-                        </Border>
-                        <Button Text="📤 ارسال گروهی" FontAttributes="Bold"
-                            Command="{Binding SendGroupSmsCommand}"
-                            BackgroundColor="Gold"
-                            TextColor="Black"
-                            FontFamily="IRANSansWeb"
-                            HorizontalOptions="End"/>
-                </VerticalStackLayout>
-            </Border>
-
-            <!-- تاریخچه پیام‌ها -->
-            <Label Text="تاریخچه پیام‌ها" FontFamily="IRANSansWeb"
-                  FontAttributes="Bold" FontSize="16" TextColor="Black"/>
-
-            <CollectionView ItemsSource="{Binding SmsHistory}" HeightRequest="220" SelectionMode="None" Margin="0,0,0,12">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border BackgroundColor="White" Padding="10" StrokeShape="RoundRectangle 8" Margin="0,5">
-                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
-                                    <VerticalStackLayout>
-                                       <Label Grid.Column="0" Text="{Binding ClientName}" FontFamily="IRANSansWeb" FontSize="12" TextColor="Black" FontAttributes="Bold"/>
-                                <Label Grid.Column="1" Text="{Binding PhoneNumber}" FontFamily="IRANSansWeb" FontSize="12" TextColor="Black" FontAttributes="Bold"/>
-                                    </VerticalStackLayout>
-                                    <HorizontalStackLayout Grid.Column="2" Spacing="15"  Margin="0,15,0,-15">
-                                        <Label Text="{Binding DateShamsi}" FontFamily="IRANSansWeb" FontSize="12" TextColor="Black"/>
-                                <Label Text="{Binding StatusText}" FontFamily="IRANSansWeb" FontSize="12" TextColor="Green" FontAttributes="Bold"/>
-                                <Button Text="👁" Margin="-10,-20,0,0" BackgroundColor="Transparent" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SmsPanelVM}}, Path=ShowSmsDetailsCommand}" CommandParameter="{Binding Id}" FontSize="20" FontFamily="IRANSansWeb"/>
-                                    </HorizontalStackLayout>
-                                </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </VerticalStackLayout>
-    </ScrollView>
-
-        <!-- Popup نیمه‌شفاف -->
-        <Grid IsVisible="{Binding IsSingleDetailsVisible}" BackgroundColor="#AA000000">
-            <Border Padding="16" StrokeShape="RoundRectangle 12" BackgroundColor="White"
-            HorizontalOptions="Center" VerticalOptions="Center"
-            WidthRequest="300">
-                <Grid RowDefinitions="Auto,*" RowSpacing="20">
-                    <!-- ScrollView متن -->
-                    <ScrollView Grid.Row="0" VerticalScrollBarVisibility="Always" MaximumHeightRequest="250">
-                        <Label Text="{Binding SingleDetailsText}" 
-                            TextColor="Black"
-                            FontFamily="IRANSansWeb"
-                            LineBreakMode="WordWrap"/>
-                    </ScrollView>
-
-                    <!-- دکمه بستن همیشه پایین -->
-                    <Button Grid.Row="1" Text="بستن" Command="{Binding CloseSingleDetailsCommand}" 
-                        BackgroundColor="Gold" FontFamily="IRANSansWeb" TextColor="Black"/>
                 </Grid>
-            </Border>
+
+                <!-- Popup گروهی مشابه -->
+                <Grid IsVisible="{Binding IsGroupDetailsVisible}" BackgroundColor="#AA000000">
+                    <Border Padding="16" StrokeShape="12" BackgroundColor="White"
+                    HorizontalOptions="Center" VerticalOptions="Center"
+                    WidthRequest="300" HeightRequest="200">
+                        <VerticalStackLayout Spacing="10">
+                            <ScrollView>
+                                <Label Text="{Binding GroupDetailsText}" TextColor="Black" FontFamily="IRANSansWeb"/>
+                            </ScrollView>
+                            <Button Text="بستن" Command="{Binding CloseGroupDetailsCommand}" BackgroundColor="Gold" TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+            </Grid>
         </Grid>
 
-        <!-- Popup گروهی مشابه -->
-        <Grid IsVisible="{Binding IsGroupDetailsVisible}" BackgroundColor="#AA000000">
-            <Border Padding="16" StrokeShape="12" BackgroundColor="White"
-               HorizontalOptions="Center" VerticalOptions="Center"
-               WidthRequest="300" HeightRequest="200">
-                <VerticalStackLayout Spacing="10">
-                    <ScrollView>
-                        <Label Text="{Binding GroupDetailsText}" TextColor="Black" FontFamily="IRANSansWeb"/>
-                    </ScrollView>
-                    <Button Text="بستن" Command="{Binding CloseGroupDetailsCommand}" BackgroundColor="Gold" TextColor="Black"/>
+        <Grid Grid.Row="1">
+            <Grid x:Name="ReminderPanel" IsVisible="{Binding IsBillsVisible}" BackgroundColor="#212529">
+                <ScrollView>
+                <VerticalStackLayout Padding="20" Spacing="20" MaximumHeightRequest="705">
+
+                    <!-- فیلد جستجو و آیکون + -->
+                    <Grid ColumnSpacing="10" FlowDirection="LeftToRight">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- آیکون جستجو -->
+                        <Image 
+                        Source="search.png"
+                        WidthRequest="20"
+                        HeightRequest="20"
+                        Margin="275,0,0,0"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center" />
+
+                        <Entry Grid.Column="0"
+                        HorizontalTextAlignment="Center"            
+                        Placeholder="{local:Loc SearchNote}" PlaceholderColor="White"
+                        Text="{Binding SearchQuery, Mode=TwoWay}"
+                        TextColor="White"
+                        FontSize="14"
+                        BackgroundColor="Transparent"
+                        HeightRequest="44"
+                        VerticalOptions="Center"
+                        Visual="Default" 
+                        HorizontalOptions="Fill" />
+
+
+                        <ImageButton Grid.Column="1"
+                          Source="add.png"
+                          Command="{Binding OpenReminderCommand}"
+                          BackgroundColor="Transparent"
+                          HeightRequest="44"
+                          WidthRequest="44"
+                          VerticalOptions="Center" />
+                    </Grid>
+
+                    <Border Stroke="#ddd"
+                          StrokeThickness="1"
+                          BackgroundColor="#2f3e46"
+                          Padding="3"
+                          Margin="-5,0,0,0" 
+                          StrokeShape="RoundRectangle 10"
+                          >
+                        <!-- هدر ستون‌ها -->
+                        <Grid x:Name="HeaderGrid" BackgroundColor="{DynamicResource PageBackgroundColor}"
+                        ColumnDefinitions="0.9*,0.6*,0.5*,0.4*"
+                        Padding="10"                     
+                        HeightRequest="40"
+                        TranslationY="0"
+                        ZIndex="1">
+                            <Label Text="{local:Loc Title}" TextColor="{DynamicResource TextColor}" Grid.Column="0" FontAttributes="Bold"/>
+                                <Label Text="{local:Loc Category}" TextColor="{DynamicResource TextColor}" Grid.Column="1" FontAttributes="Bold"/>
+                                <Label Text="{local:Loc Reminder}" TextColor="{DynamicResource TextColor}"  Grid.Column="2" FontAttributes="Bold"/>
+                            <Label Text="{local:Loc Details}" TextColor="{DynamicResource TextColor}" Grid.Column="3" FontAttributes="Bold"/>
+                        </Grid>
+                    </Border>
+
+                    <!--لیست یادداشت‌ها-->
+                    <CollectionView x:Name="NotesCollection"
+                    ItemsSource= "{Binding Items}" VerticalOptions="Fill" RemainingItemsThreshold="1"  Scrolled="NotesCollection_Scrolled"     
+                    ItemsUpdatingScrollMode="KeepScrollOffset"
+                    SelectionMode="None" MaximumHeightRequest="600" WidthRequest="375"    
+                    Margin="-5,-20,0,0" VerticalScrollBarVisibility="Always">
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeView
+                             Threshold="60">
+                                    <SwipeView.RightItems>
+                                        <SwipeItems Mode="Execute">
+                                            <SwipeItem
+                                      Text="{local:Loc DeleteItem}"
+                                      BackgroundColor="Crimson"
+                                      IconImageSource="delete.png"
+                                      Command="{Binding Path=BindingContext.DeleteNoteCommand,
+                                                Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                      CommandParameter="{Binding .}" />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <!--کارت آیتم-->
+                                    <!--#353535-->
+                                    <Border
+                                    StrokeThickness="1"
+                                    BackgroundColor="{DynamicResource PageBackgroundColor}"
+                                    Padding="3"
+                                    Margin="0,3"
+                                    StrokeShape="RoundRectangle 10"
+                                    >
+
+                                        <Grid ColumnSpacing="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.7*"/>
+                                                <ColumnDefinition Width="0.4*" />
+                                                    <ColumnDefinition Width="0.4*" />
+                                                    <ColumnDefinition Width="0.4*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <!--عنوان-->
+                                            <Label Grid.Column="0"
+                                            Text="{Binding Title}" TextColor="{DynamicResource TextColor}"
+                                            FontAttributes="Bold" Padding="10"
+                                            FontSize="13"
+                                            VerticalOptions="End" />
+
+                                            <!--دسته‌بندی-->
+                                            <Border Stroke="White"
+                                          Grid.Column="1"
+                                          StrokeThickness="1"
+                                          
+                                          Padding="4,2"
+                                          StrokeShape="RoundRectangle 5"
+                                          VerticalOptions="Center">
+                                                <Label Text="{Binding Category}"
+                                            FontSize="13" FontAttributes="Bold"
+                                            TextColor="{DynamicResource TextColor}"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center" />
+                                            </Border>
+                                         
+                                            <!--یادآوری-->
+                                            <Border Grid.Column="2"                                                                                 
+                                            StrokeThickness="1"                                            
+                                            Padding="4,2"
+                                            StrokeShape="RoundRectangle 5"
+                                            VerticalOptions="Center">
+                                                <Label Text="{Binding IsReminderSetText}"
+                                                FontSize="13" FontAttributes="Bold"                                          
+                                                VerticalOptions="Center" TextColor="{DynamicResource TextColor}"
+                                                HorizontalOptions="Center">
+                                                    <Label.Triggers>
+                                                        <DataTrigger TargetType="Label"
+                                                 Binding="{Binding IsReminderSetText}"
+                                                 Value="دارد">
+                                                            <Setter Property="TextColor" Value="GreenYellow" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label"
+                                                        Binding="{Binding IsReminderSetText}"
+                                                        Value="ندارد">
+                                                            <Setter Property="TextColor" Value="IndianRed" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
+                                            </Border>
+
+                                            <!--دکمه نمایش جزئیات-->
+                                            <ImageButton Grid.Column="3"
+                                            Source="showdetails.png"
+                                            Command="{Binding Path=BindingContext.ShowDetailsCommand,
+                                            Source={RelativeSource AncestorType={x:Type ContentPage}}}"                                                                        
+                                            CommandParameter="{Binding .}"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="0"
+                                            />
+                                        </Grid>
+                                    </Border>
+                                </SwipeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </VerticalStackLayout>
-            </Border>
+            </ScrollView>
+          
+            <!-- فوتر ثابت -->
+            <VerticalStackLayout Grid.Row="1"
+                          Padding="10"
+                          Spacing="0"
+                          HorizontalOptions="Center"
+                          VerticalOptions="End">
+                <!-- دکمه‌های صفحه‌بندی -->
+                <Grid ColumnDefinitions="3*,1*,3*" Margin="0,0,0,20">
+
+                    <Button Text="{local:Loc PreviousPage}"
+                   Grid.Column="0" BackgroundColor="#7b2cbf" TextColor="White" FontAttributes="Bold"
+                   Command="{Binding LoadPreviousPageCommand}"
+                   IsEnabled="{Binding CurrentPage}" MinimumWidthRequest="175" MaximumWidthRequest="300"/>
+
+                    <Label Text="{Binding CurrentPage}" 
+                    Grid.Column="1" TextColor="White"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center"/>
+
+                    <Button Text="{local:Loc NextPage}" 
+                    Grid.Column="2" FontAttributes="Bold"
+                    Command="{Binding LoadNextPageCommand}"
+                    IsEnabled="{Binding HasMorePages}"/>
+                </Grid>
+
+                <ActivityIndicator
+                IsVisible="{Binding IsBusy}" 
+                IsRunning="{Binding IsBusy}"
+                Color="Blue"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+
+                <!-- دکمه رفرش --><!--
+                <Button Text="{local:Loc UpdateList}" Margin="0,-5,0,10"
+                Command="{Binding RefreshCommand}"
+                BackgroundColor="#4CAF50" FontAttributes="Bold"
+                TextColor="White"
+                CornerRadius="10"/>-->
+              
+            </VerticalStackLayout>
+        </Grid>
         </Grid>
     </Grid>
 </ContentPage>

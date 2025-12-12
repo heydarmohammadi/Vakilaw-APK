@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Vakilaw.Views.Popups.ReminderPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:local="clr-namespace:Vakilaw.MarkupExtensions"   
+    BackgroundColor="#00000080" Title="{local:Loc BackToMainPage}" FlowDirection="RightToLeft">
+
+    <Grid RowDefinitions="Auto">
+
+        <!-- افکت شیشه‌ای -->
+        <Border
+            WidthRequest="330"
+            Padding="22"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            StrokeShape="RoundRectangle 25"
+            BackgroundColor="#212529">
+
+            <Border.Stroke>
+                <SolidColorBrush Color="#444" />
+            </Border.Stroke>
+
+            <VerticalStackLayout Spacing="20">
+
+                <!-- عنوان -->
+                <Label Text="⏰ تنظیم یادآوری جلسه"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="White"/>
+
+                <!-- محتوای اصلی صفحه داخل این StackLayout قرار می‌گیره -->
+                <ScrollView>
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="{local:Loc AddNoteTitle}" TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="14" Margin="0,0,0,-15"/>
+                        <Border Stroke="#CCC"
+                        StrokeThickness="2"                        
+                        BackgroundColor="Transparent"
+                        StrokeShape="RoundRectangle 10">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="White" Offset="1.0" />
+                                    <GradientStop Color="#2196F3" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Entry Text="{Binding SelectedNote.Title}"
+                            Placeholder="{local:Loc TitlePlaceholder}"
+                            TextColor="Black"
+                            BackgroundColor="Transparent"
+                            HeightRequest="44"/>
+                        </Border>
+
+                        <Label Text="{local:Loc AddNoteDescription}" TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="14" Margin="0,0,0,-10"/>
+                        <Border Stroke="#CCC"
+                        StrokeThickness="2" 
+                        BackgroundColor="Transparent"
+                        StrokeShape="RoundRectangle 10">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="Transparent" Offset="0.0" />
+                                    <GradientStop Color="Transparent" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Editor Text="{Binding SelectedNote.Description}"
+                            AutoSize="TextChanges"
+                            Placeholder="{local:Loc DescriptionPlaceholder}"
+                            TextColor="Black"
+                            BackgroundColor="White"
+                            HeightRequest="100"                        
+                            FontSize="13"/>
+                        </Border>
+
+                        <Label Text="{local:Loc AddNoteCategory}" TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="14" Margin="0,0,0,-10"/>
+                        <Border Stroke="#CCC"
+                        StrokeThickness="2"
+                        BackgroundColor="Transparent"
+                        StrokeShape="RoundRectangle 10">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="Transparent" Offset="0.0" />
+                                    <GradientStop Color="Transparent" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Picker ItemsSource="{Binding Categories}"
+                            SelectedItem="{Binding SelectedNote.Category}"
+                            Title="{local:Loc SelectCategory}"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            HeightRequest="44"
+                            FontSize="13"/>
+                        </Border>
+
+                        <Label Text="{local:Loc ReminderDate}" TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="14" Margin="0,0,0,-15"/>
+                        <Border Stroke="#CCC"
+                        StrokeThickness="2"
+                        BackgroundColor="Transparent"
+                        StrokeShape="RoundRectangle 10">
+                            <Entry x:Name="DateEntry"
+                            Text="{Binding SelectedNote.ReminderDateString}"
+                            Placeholder="{local:Loc DateAndTimePlaceholder}"
+                            TextColor="White"/>
+                        </Border>
+                       
+                    </VerticalStackLayout>
+                </ScrollView>
+
+                <!-- دکمه‌ها -->
+                <HorizontalStackLayout Spacing="15">
+                    <Button Text="لغو"
+                            BackgroundColor="#444"
+                            TextColor="White"
+                            Clicked="Cancel_Clicked"
+                            HorizontalOptions="Fill"/>
+
+                    <Button Text="{local:Loc SaveMeeting}"
+                     Command="{Binding SaveCommand}"
+                            BackgroundColor="#4CAF50"
+                            TextColor="White"
+                           
+                            HorizontalOptions="Fill"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</pages:PopupPage>
