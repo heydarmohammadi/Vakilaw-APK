@@ -680,6 +680,7 @@ public partial class MainPageVM : ObservableObject
     #endregion
 
     #region SettingsPanel
+
     [RelayCommand]
     private async Task CreateBackupAsync()
     {
@@ -752,6 +753,31 @@ public partial class MainPageVM : ObservableObject
                 ex.Message,
                 LocalizationService.Instance["OK"]);
         }
+    }
+
+    [RelayCommand]
+    private async Task ClearAllAsync()
+    {
+        // نمایش Alert برای تایید
+        bool confirmed = await Application.Current.MainPage.DisplayAlert(
+            LocalizationService.Instance["ClearDataWarningTitle"],
+            LocalizationService.Instance["ClearDataWarningContent"],
+            LocalizationService.Instance["DeletingDataYes"],
+            LocalizationService.Instance["DeletingDataNo"]
+        );
+
+        if (!confirmed)
+            return;
+
+        // پاک کردن تمام یادداشت‌ها
+        await _reminderService.ClearAllData();
+
+        // نمایش پیام موفقیت
+        await Application.Current.MainPage.DisplayAlert(
+            LocalizationService.Instance["DeletingDataSuccess"],
+            LocalizationService.Instance["AllNotesDeleted"],
+            LocalizationService.Instance["OK"]
+        );
     }
     #endregion
 }

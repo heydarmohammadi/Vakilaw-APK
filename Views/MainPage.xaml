@@ -32,7 +32,7 @@
                              HorizontalOptions="End"
                              Margin="225,0,0,0"                             
                              Command="{Binding OpenLawyerPopupCommand}"/>
-                <Label Text="وکیل هستید؟" IsVisible="{Binding ShowRegisterLabel}" FontFamily="IRANSansWeb" TextColor="Gold" FontAttributes="Bold" Grid.Column="1" HorizontalOptions="End" Margin="0,10,55,0"/>
+                <Label Text="{local:Loc LawyerSubmit}" IsVisible="{Binding ShowRegisterLabel}" FontFamily="IRANSansWeb" TextColor="Gold" FontAttributes="Bold" Grid.Column="1" HorizontalOptions="End" Margin="0,10,55,0"/>
             </Grid>
         </VerticalStackLayout>
     </Shell.TitleView>
@@ -52,7 +52,7 @@
                 <StackLayout Padding="20,0,0,0" FlowDirection="RightToLeft">
                     <Label Text="{Binding LawyerFullName}" FlowDirection="RightToLeft" FontFamily="Sahel" FontSize="16" FontAttributes="Bold" TextColor="White"/>
                     <HorizontalStackLayout>
-                        <Label Text="وکیل پایه یک دادگستری - شماره پروانه: " IsVisible="{Binding LawyerLicenseVisibility}" FontFamily="IRANSansWeb" FontSize="11" TextColor="White" Opacity="0.8"/>
+                        <Label Text="{local:Loc LawyerInfo}" IsVisible="{Binding LawyerLicenseVisibility}" FontFamily="IRANSansWeb" FontSize="11" TextColor="White" Opacity="0.8"/>
                         <Label Text="{Binding LawyerLicense}" FontFamily="IRANSansWeb" FontSize="11" TextColor="White" Opacity="0.8"/>
                     </HorizontalStackLayout>
                 </StackLayout>
@@ -81,7 +81,7 @@
                         WidthRequest="28"
                         HeightRequest="28"
                         VerticalOptions="Center"/>
-                        <Label Text="لیست وکلای پایه یک دادگستری"
+                        <Label Text="{local:Loc Cart1}"
                         FontSize="16"
                         VerticalOptions="Center"
                         Grid.Column="1"
@@ -96,7 +96,7 @@
                             <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="LawBank"/>
                         </Grid.GestureRecognizers>
                         <Image Source="lawbank.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
-                        <Label Text="بانک قوانین حقوقی" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
+                        <Label Text="{local:Loc Cart2}" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
                     </Grid>
                 </Border>
 
@@ -107,7 +107,7 @@
                             <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="Clients"/>
                         </Grid.GestureRecognizers>
                         <Image Source="clients.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
-                        <Label Text="مدیریت موکل‌ ها و پرونده ها" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
+                        <Label Text="{local:Loc Cart3}" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
                     </Grid>
                 </Border>
 
@@ -118,7 +118,7 @@
                             <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="Documents"/>
                         </Grid.GestureRecognizers>
                         <Image Source="contracts.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
-                        <Label Text="مدیریت قراردادها و لایحه ها" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
+                        <Label Text="{local:Loc Cart4}" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
                     </Grid>
                 </Border>
 
@@ -130,7 +130,7 @@
                         </Grid.GestureRecognizers>
                         <HorizontalStackLayout>
                             <Image Source="sms.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
-                            <Label Text="پنل پیامکی و مدیریت جلسات" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
+                            <Label Text="{local:Loc Cart5}" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
                             <!--<Label Text="(نیازمند فعالسازی)" TextColor="Gold" FontAttributes="Bold" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>-->
                         </HorizontalStackLayout>
                     </Grid>
@@ -143,7 +143,7 @@
                             <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="Transactions"/>
                         </Grid.GestureRecognizers>
                         <Image Source="financial_management.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
-                        <Label Text="مدیریت مالی و حسابداری" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
+                        <Label Text="{local:Loc Cart6}" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
                     </Grid>
                 </Border>
 
@@ -154,11 +154,11 @@
                             <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="Reports"/>
                         </Grid.GestureRecognizers>
                         <Image Source="reports.png" WidthRequest="28" HeightRequest="28" VerticalOptions="Center"/>
-                        <Label Text="گزارش ها" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
+                        <Label Text="{local:Loc Cart7}" FontSize="16" VerticalOptions="Center" Grid.Column="1" Margin="10,0,0,0"/>
                     </Grid>
                 </Border>
 
-                <Label Text="⚖️ سامانه حقوقی وکیلاو ⚖️" TextColor="Black" FontSize="20" FontAttributes="Bold" FontFamily="IRANSansWeb" HorizontalTextAlignment="Center"/>
+                <Label Text="{local:Loc AppLabel}" TextColor="Black" FontSize="20" FontAttributes="Bold" FontFamily="IRANSansWeb" HorizontalTextAlignment="Center"/>
 
             </StackLayout>
         </Grid>
@@ -198,7 +198,7 @@
                 <Border StrokeShape="12" BackgroundColor="Transparent" Stroke="Transparent">
                     <Grid ColumnDefinitions="40,*,Auto" Padding="0,5">
                     <Image Source="add.png" WidthRequest="24" HeightRequest="24" />
-                    <Label Text="تنظیم یادآوری" Grid.Column="1"
+                        <Label Text="{local:Loc ReminderItem}" Grid.Column="1"
                         TextColor="White" FontSize="16" />
                     <Image Source="reminder.png" WidthRequest="24" Grid.Column="2" />
                         <Grid.GestureRecognizers>
@@ -213,7 +213,7 @@
                 <Border StrokeShape="12" BackgroundColor="Transparent" Stroke="Transparent">
                     <Grid ColumnDefinitions="40,*,Auto" Padding="0,5">
                         <Image Source="add.png" WidthRequest="24" HeightRequest="24" />
-                        <Label Text="ثبت موکل" Grid.Column="1"
+                        <Label Text="{local:Loc ClientItem}" Grid.Column="1"
                         TextColor="White" FontSize="16" />
                         <Image Source="clients.png" WidthRequest="24" Grid.Column="2" />
                         <Grid.GestureRecognizers>
@@ -228,7 +228,7 @@
                 <Border StrokeShape="12" BackgroundColor="Transparent" Stroke="Transparent">
                 <Grid ColumnDefinitions="40,*,Auto" Padding="0,5">
                     <Image Source="add.png" WidthRequest="24" HeightRequest="24" />
-                    <Label Text="ثبت پرونده" Grid.Column="1"
+                        <Label Text="{local:Loc CaseItem}" Grid.Column="1"
                         TextColor="White" FontSize="16" />
                     <Image Source="openfolder_white.png" WidthRequest="21" Grid.Column="2" />
                         <Grid.GestureRecognizers>
@@ -242,7 +242,7 @@
                 <Border StrokeShape="12" BackgroundColor="Transparent" Stroke="Transparent">
                     <Grid ColumnDefinitions="40,*,Auto" Padding="0,5">
                     <Image Source="add.png" WidthRequest="24" HeightRequest="24" />
-                    <Label Text="ثبت تراکنش جدید" Grid.Column="1"
+                        <Label Text="{local:Loc TransactionItem}" Grid.Column="1"
                         TextColor="White" FontSize="16" />
                     <Image Source="transaction_white.png" WidthRequest="22" Grid.Column="2" />
                         <Grid.GestureRecognizers>
@@ -305,7 +305,7 @@
                     </Image>
                 </Border>
 
-                <Label Text="تنظیمات"
+                <Label Text="{local:Loc Settings}"
                 FontSize="12">
                     <Label.Style>
                         <Style TargetType="Label">
@@ -368,7 +368,7 @@
                     </Image>
                 </Border>
 
-                <Label Text="عدل ایران"
+                <Label Text="{local:Loc AdlIran}"
                 FontSize="12">
                     <Label.Style>
                         <Style TargetType="Label">
@@ -498,7 +498,7 @@
                     </Image>
                 </Border>
 
-                <Label Text="نشان‌ها"
+                <Label Text="{local:Loc Bookmark}"
                 FontSize="12"
                 Margin="2,0,0,0">
                     <Label.Style>
@@ -562,7 +562,7 @@
                     </Image>
                 </Border>
 
-                <Label Text="خانه"
+                <Label Text="{local:Loc Home}"
                 FontSize="12"
                 Margin="10,0">
                     <Label.Style>
@@ -588,11 +588,11 @@
                    
                     <Grid ColumnDefinitions="2*,1.5*" RowDefinitions="2*,1*">
                         <Image Source="search3.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start"/>
-                        <Entry Grid.Column="0" HorizontalTextAlignment="Center" Placeholder="جستجوی وکیل..." PlaceholderColor="DarkGray" Text="{Binding SearchQuery}" HorizontalOptions="Fill"/>
-                        <Picker Grid.Column="1" ItemsSource="{Binding Cities}" SelectedIndex="1" SelectedItem="{Binding SelectedCity}" Title="انتخاب شهر"/>
+                        <Entry Grid.Column="0" HorizontalTextAlignment="Center" Placeholder="{local:Loc LawyerSearchPlaceholder}" PlaceholderColor="DarkGray" Text="{Binding SearchQuery}" HorizontalOptions="Fill"/>
+                        <Picker Grid.Column="1" ItemsSource="{Binding Cities}" SelectedIndex="1" SelectedItem="{Binding SelectedCity}" Title="{local:Loc SelectCity}"/>
                         <HorizontalStackLayout Grid.Column="1" Grid.Row="1" Margin="-175,15,0,0">
-                            <Label Text="شهر شما موجود نیست؟"/>
-                            <Button Text="جستجو در سامانه جامع وکلا" Margin="0,-12,0,0" Command="{Binding HamiVakilCommand}" BackgroundColor="Transparent" FontAttributes="Bold" TextColor="Gold"/>
+                            <Label Text="{local:Loc ListLawyersCityLabel}"/>
+                            <Button Text="{local:Loc ListLawyersSearchLabel}" Margin="0,-12,0,0" Command="{Binding HamiVakilCommand}" BackgroundColor="Transparent" FontAttributes="Bold" TextColor="Gold"/>
                         </HorizontalStackLayout>
                     </Grid>
 
@@ -669,7 +669,7 @@
                             
                                         <!-- دکمه مشاهده جزئیات -->
                                         <HorizontalStackLayout Spacing="10" HorizontalOptions="End">
-                                            <Button Text="مشاهده جزئیات"                                                 
+                                            <Button Text="{local:Loc SeeDetails}"                                                 
                                             FlowDirection="RightToLeft"
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenArticleCommand}"
                                             CommandParameter="{Binding .}"
@@ -701,29 +701,118 @@
         </Grid>
 
         <!-- پنل تنظیمات -->
-        <Grid x:Name="SettingsPanel" BackgroundColor="WhiteSmoke" Padding="20" IsVisible="{Binding IsSettingsVisible}">
-            <!--بکاپ-->
-            <Border                  
-                StrokeShape="RoundRectangle 16"
-                StrokeThickness="1.5"
-                Padding="15"
-                Margin="0,5">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="{local:Loc BackupRestoreData}"
-               FontSize="18"                          
-               FontAttributes="Bold"/>
+        <Grid x:Name="SettingsPanel" BackgroundColor="#212529" Padding="20" IsVisible="{Binding IsSettingsVisible}">
+            <ScrollView>
+                <VerticalStackLayout Padding="20" Spacing="20">
+                
+                    <!--🌐 انتخاب زبان سفارشی-->
+                    <Border Stroke="{DynamicResource TextColor}"                    
+                    StrokeShape="RoundRectangle 16"
+                    StrokeThickness="1.5"
+                    Padding="15">
+                                                 
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="{local:Loc SelectLanguage}" FontSize="18" FontAttributes="Bold"/>
+                            <HorizontalStackLayout Spacing="10">
+                                <Button x:Name="FarsiBTN" Text="فارسی" FontAttributes="Bold" TextColor="White" Clicked="FarsiBTN_Clicked"/>
+                                <Button x:Name="ArabicBTN" Text="العربية" FontAttributes="Bold" TextColor="White" Clicked="ArabicBTN_Clicked"/>
+                                <Button x:Name="EnglishBTN" Text="English" FontAttributes="Bold" TextColor="White" Clicked="EnglishBTN_Clicked"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
 
-                    <Button Text="{local:Loc CreateBackup}"
-                Command="{Binding CreateBackupCommand}"
-                TextColor="White"
-                CornerRadius="12"/>
+                    <ActivityIndicator x:Name="ActivityIndicator"
+                    IsVisible="Collapse"
+                    Color="Blue"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
 
-                    <Button Text="{local:Loc RestoreBackup}"
-                Command="{Binding RestoreBackupCommand}"          
-                TextColor="White"
-                CornerRadius="12"/>
+                    <!--بکاپ-->
+                    <Border                  
+                    StrokeShape="RoundRectangle 16"
+                    StrokeThickness="1.5"
+                    Padding="15">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="{local:Loc BackupRestoreData}"
+                        FontSize="18"                          
+                        FontAttributes="Bold"/>
+
+                            <Button Text="{local:Loc CreateBackup}"
+                         Command="{Binding CreateBackupCommand}"
+                         TextColor="White"
+                         CornerRadius="12"/>
+
+                            <Button Text="{local:Loc RestoreBackup}"
+                         Command="{Binding RestoreBackupCommand}"          
+                         TextColor="White"
+                         CornerRadius="12"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!--پاک کردن داده‌ها-->
+                    <Border Stroke="Crimson"                 
+                    StrokeShape="RoundRectangle 16"
+                    StrokeThickness="1.5"
+                    Padding="15">
+                                  
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="{local:Loc ClearData}"
+                            FontSize="18"
+                            TextColor="Crimson"
+                            FontAttributes="Bold"/>
+
+                            <Button Text="{local:Loc Deleteallnotes}"
+                            Command="{Binding ClearAllCommand}"
+                            BackgroundColor="Crimson"
+                            TextColor="White"
+                            CornerRadius="12"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!--ارتباط با توسعه‌دهنده-->
+                    <Border 
+                    Stroke="{DynamicResource TextColor}"
+                    StrokeShape="RoundRectangle 16"
+                    StrokeThickness="1.5"
+                    Padding="15">
+                    
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="{local:Loc ContactTheDeveloper}"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center" />
+
+                            <Grid ColumnDefinitions="Auto,Auto,Auto"
+                            ColumnSpacing="30"
+                            HorizontalOptions="Center">
+
+                                <ImageButton Grid.Column="0"
+                                Source="email.png"
+                                HeightRequest="40"
+                                WidthRequest="40"
+                                Clicked="EmailButton_Clicked"
+                                BackgroundColor="Transparent"/>
+
+                                <ImageButton Grid.Column="1"
+                                Source="telegram.png"
+                                HeightRequest="40"
+                                WidthRequest="40"
+                                Clicked="TelegramButton_Clicked"
+                                BackgroundColor="Transparent"/>
+
+                                <ImageButton Grid.Column="2"
+                                Source="instagram.png"
+                                HeightRequest="40"
+                                WidthRequest="40"
+                                Clicked="InstagramButton_Clicked"
+                                BackgroundColor="Transparent"/>
+
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                    <Label Text="{local:Loc AppVersion}" FontAttributes="Bold"/>
                 </VerticalStackLayout>
-            </Border>
+            </ScrollView>
         </Grid>
     </Grid>
 </ContentPage>

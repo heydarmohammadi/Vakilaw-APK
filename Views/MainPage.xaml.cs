@@ -4,14 +4,14 @@ using Vakilaw.ViewModels;
 namespace Vakilaw.Views
 {
     public partial class MainPage : ContentPage
-    {
-
+    {    
         private readonly ClientsAndCasesViewModel _vm1;
         private readonly TransactionsVM _vm2;
 
         public MainPage(MainPageVM vm, ClientsAndCasesViewModel vm1 , TransactionsVM vm2)
         {
             InitializeComponent();
+         
             BindingContext = vm;
             _vm1 = vm1;
             _vm2 = vm2;
@@ -107,6 +107,40 @@ namespace Vakilaw.Views
                     System.Diagnostics.Debug.WriteLine("Card_Tapped Error: " + ex.Message);
                 }
             }
-        }   
+        }
+     
+        private void FarsiBTN_Clicked(object sender, EventArgs e)
+        {
+            LocalizationService.Instance.SetLanguage("fa");
+        }
+
+        private void ArabicBTN_Clicked(object sender, EventArgs e)
+        {
+            LocalizationService.Instance.SetLanguage("ar");
+        }
+
+        private void EnglishBTN_Clicked(object sender, EventArgs e)
+        {
+            LocalizationService.Instance.SetLanguage("en");
+        }
+
+        private async void EmailButton_Clicked(object sender, EventArgs e)
+        {
+            await Launcher.OpenAsync(new Uri("mailto:heydarmohammadinasir@outlook.com"));
+        }
+
+        private async void TelegramButton_Clicked(object sender, EventArgs e)
+        {
+            await Launcher.OpenAsync(new Uri("https://t.me/heymn_hmn"));
+        }
+
+        private async void InstagramButton_Clicked(object sender, EventArgs e)
+        {
+            await Launcher.OpenAsync(new Uri("https://instagram.com/_heycamp_"));
+        }
+        //private async void InstagramButton_Clicked(object sender, EventArgs e)
+        //{
+        //    await Launcher.OpenAsync(new Uri("https://wa.me/989023349043")); // شماره با فرمت بین‌المللی
+        //}
     }
 }

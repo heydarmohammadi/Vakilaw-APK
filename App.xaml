@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:Vakilaw"
              x:Class="Vakilaw.App">
     <Application.Resources>
+     
         <ResourceDictionary>
             <converters:BoolToColorConverter x:Key="BoolToColorConverter" 
                                          TrueColor="DodgerBlue" 
@@ -15,10 +16,12 @@
             <converters:NullToBoolConverter x:Key="NullToBoolConverter"/>
             <converters:BoolToPlusMinusConverter x:Key="BoolToPlusMinusConverter"/>
             <converters:TabToColorConverter x:Key="TabToColorConverter"/>
+           
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+
     </Application.Resources>
 </Application>

@@ -145,7 +145,7 @@
     <value>اختيار اللغة:</value>
   </data>
   <data name="Deleteallnotes" xml:space="preserve">
-    <value>حذف جميع الملاحظات</value>
+    <value>مسح جميع الجلسات</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Task List | قائمة الواجبات المنزلية</value>
@@ -202,7 +202,7 @@
     <value>العودة إلى الصفحة الرئيسية</value>
   </data>
   <data name="AddNotePage" xml:space="preserve">
-    <value>صفحة إضافة ملاحظة</value>
+    <value>صفحة إضافة الجلسة</value>
   </data>
   <data name="AddNoteTitle" xml:space="preserve">
     <value>عنوان:</value>
@@ -268,10 +268,10 @@
     <value>أدخل الأساسيات!</value>
   </data>
   <data name="DeleteNoteWarningAlert" xml:space="preserve">
-    <value>حذف الملاحظة</value>
+    <value>مسح الجلسة</value>
   </data>
   <data name="DeleteNoteAlertContent" xml:space="preserve">
-    <value>هل تريد حذف الملاحظة؟</value>
+    <value>هل تريد مسح الجلسة؟</value>
   </data>
   <data name="DeleteNoteOK" xml:space="preserve">
     <value>نعم</value>
@@ -292,10 +292,10 @@
     <value>لا</value>
   </data>
   <data name="DeletingDataSuccess" xml:space="preserve">
-    <value>تم الحذف بنجاح.</value>
+    <value>تم المسح بنجاح.</value>
   </data>
   <data name="AllNotesDeleted" xml:space="preserve">
-    <value>تم حذف كافة المعلومات.</value>
+    <value>تم مسح كافة المعلومات.</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>تمام</value>
@@ -375,9 +375,6 @@
   <data name="CasePlaceHolderStartDate" xml:space="preserve">
     <value>تاریخ التسجیل(مثال:  1404/06/25)</value>
   </data>
-  <data name="CasePlaceHolderEndDate" xml:space="preserve">
-    <value>تاريخ الإغلاق: (مثال: 25/09/1404)</value>
-  </data>
   <data name="ReminderDate" xml:space="preserve">
     <value>تاريخ و وقت التذكير:</value>
   </data>
@@ -398,5 +395,71 @@
   </data>
   <data name="SearchNote" xml:space="preserve">
     <value>البحث عن الجلسه ...</value>
+  </data>
+  <data name="LawyerSubmit" xml:space="preserve">
+    <value>هل أنت محامی؟</value>
+  </data>
+  <data name="LawyerInfo" xml:space="preserve">
+    <value>محامٍ أمام محكمة العدل - رقم الترخيص:</value>
+  </data>
+  <data name="Cart1" xml:space="preserve">
+    <value>قائمة المحامين في مبنى المحكمة</value>
+  </data>
+  <data name="Cart2" xml:space="preserve">
+    <value>بنك القانون</value>
+  </data>
+  <data name="CasePlaceHolderEndDate" xml:space="preserve">
+    <value>تاريخ الإغلاق: (مثال: 25/09/1404)</value>
+  </data>
+  <data name="Cart3" xml:space="preserve">
+    <value>إدارة العملاء والحالات</value>
+  </data>
+  <data name="Cart4" xml:space="preserve">
+    <value>إدارة العقود والفواتير</value>
+  </data>
+  <data name="Cart5" xml:space="preserve">
+    <value>لوحة الرسائل النصية القصيرة وإدارة الاجتماعات</value>
+  </data>
+  <data name="Cart6" xml:space="preserve">
+    <value>الإدارة المالية والمحاسبة</value>
+  </data>
+  <data name="Cart7" xml:space="preserve">
+    <value>التقارير</value>
+  </data>
+  <data name="AppLabel" xml:space="preserve">
+    <value>⚖️ نظام فاكيلاو القانوني ⚖️</value>
+  </data>
+  <data name="ReminderItem" xml:space="preserve">
+    <value>اضبط تذكيرًا</value>
+  </data>
+  <data name="ClientItem" xml:space="preserve">
+    <value>تسجيل العميل</value>
+  </data>
+  <data name="CaseItem" xml:space="preserve">
+    <value>تسجيل الملف</value>
+  </data>
+  <data name="TransactionItem" xml:space="preserve">
+    <value>سجل معاملة جديدة</value>
+  </data>
+  <data name="AdlIran" xml:space="preserve">
+    <value>عدل ایران</value>
+  </data>
+  <data name="Bookmark" xml:space="preserve">
+    <value>الشارات</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الاصلیه</value>
+  </data>
+  <data name="ListLawyersCityLabel" xml:space="preserve">
+    <value>مدينتك غير متاحة؟</value>
+  </data>
+  <data name="ListLawyersSearchLabel" xml:space="preserve">
+    <value>ابحث في النظام الشامل</value>
+  </data>
+  <data name="LawyerSearchPlaceholder" xml:space="preserve">
+    <value>البحث عن محامٍ...</value>
+  </data>
+  <data name="SeeDetails" xml:space="preserve">
+    <value>عرض التفاصيل</value>
   </data>
 </root>

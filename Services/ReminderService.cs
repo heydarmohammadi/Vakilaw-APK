@@ -134,7 +134,7 @@ namespace Vakilaw.Services
         }
 
         // پاک کردن همه داده‌های جدول
-        public void ClearAllData()
+        public async Task ClearAllData()
         {
             try
             {

@@ -145,7 +145,7 @@
     <value>Select Language:</value>
   </data>
   <data name="Deleteallnotes" xml:space="preserve">
-    <value>Delete All Notes</value>
+    <value>Delete All Meetings</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Task List</value>
@@ -202,7 +202,7 @@
     <value>Back to Home page</value>
   </data>
   <data name="AddNotePage" xml:space="preserve">
-    <value>AddNote Page</value>
+    <value>AddMeeting Page</value>
   </data>
   <data name="AddNoteTitle" xml:space="preserve">
     <value>Title:</value>
@@ -268,10 +268,10 @@
     <value>Enter the essentials!</value>
   </data>
   <data name="DeleteNoteWarningAlert" xml:space="preserve">
-    <value>Delete Note</value>
+    <value>Delete Meeting</value>
   </data>
   <data name="DeleteNoteAlertContent" xml:space="preserve">
-    <value>Confirm delete the note?</value>
+    <value>Confirm delete the Meeting?</value>
   </data>
   <data name="DeleteNoteOK" xml:space="preserve">
     <value>Yes</value>
@@ -375,9 +375,6 @@
   <data name="CasePlaceHolderStartDate" xml:space="preserve">
     <value>Start Date (Example: 1404/06/25)</value>
   </data>
-  <data name="CasePlaceHolderEndDate" xml:space="preserve">
-    <value>Closing date: (example: 09/25/1404)</value>
-  </data>
   <data name="ReminderDate" xml:space="preserve">
     <value>Reminder date and time:</value>
   </data>
@@ -398,5 +395,71 @@
   </data>
   <data name="SearchNote" xml:space="preserve">
     <value>Search Meeting ...</value>
+  </data>
+  <data name="LawyerSubmit" xml:space="preserve">
+    <value>Are you a Lawyer?</value>
+  </data>
+  <data name="LawyerInfo" xml:space="preserve">
+    <value>Lawyer of a court of justice - license number:</value>
+  </data>
+  <data name="Cart1" xml:space="preserve">
+    <value>List of lawyers at the base of a courthouse</value>
+  </data>
+  <data name="Cart2" xml:space="preserve">
+    <value>Legal Law Bank</value>
+  </data>
+  <data name="CasePlaceHolderEndDate" xml:space="preserve">
+    <value>Closing date: (example: 09/25/1404)</value>
+  </data>
+  <data name="Cart3" xml:space="preserve">
+    <value>Client and case management</value>
+  </data>
+  <data name="Cart4" xml:space="preserve">
+    <value>Contracts and Bills Management</value>
+  </data>
+  <data name="Cart5" xml:space="preserve">
+    <value>SMS panel and meeting management</value>
+  </data>
+  <data name="Cart6" xml:space="preserve">
+    <value>Financial management and accounting</value>
+  </data>
+  <data name="Cart7" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="AppLabel" xml:space="preserve">
+    <value>⚖️ Vakilaw Legal System ⚖️</value>
+  </data>
+  <data name="ReminderItem" xml:space="preserve">
+    <value>Set Reminder</value>
+  </data>
+  <data name="ClientItem" xml:space="preserve">
+    <value>Add Client</value>
+  </data>
+  <data name="CaseItem" xml:space="preserve">
+    <value>Add Case</value>
+  </data>
+  <data name="TransactionItem" xml:space="preserve">
+    <value>Add Transaction</value>
+  </data>
+  <data name="AdlIran" xml:space="preserve">
+    <value>Adl Iran</value>
+  </data>
+  <data name="Bookmark" xml:space="preserve">
+    <value>Bookmarks</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="ListLawyersCityLabel" xml:space="preserve">
+    <value>Your city is not available?</value>
+  </data>
+  <data name="ListLawyersSearchLabel" xml:space="preserve">
+    <value>Search in the comprehensive system of lawyers</value>
+  </data>
+  <data name="LawyerSearchPlaceholder" xml:space="preserve">
+    <value>Search Lawyer ...</value>
+  </data>
+  <data name="SeeDetails" xml:space="preserve">
+    <value>View details</value>
   </data>
 </root>

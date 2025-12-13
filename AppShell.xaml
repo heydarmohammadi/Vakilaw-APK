@@ -6,6 +6,15 @@
     xmlns:local="clr-namespace:Vakilaw.Views"
     Title="Vakilaw">
 
+    <!--<Shell.Resources>
+        <Style TargetType="Shell">
+            <Setter Property="Shell.BackgroundColor" Value="#333333"/>
+            <Setter Property="Shell.ForegroundColor" Value="White"/>
+            <Setter Property="Shell.TitleColor" Value="White"/>
+            <Setter Property="Shell.DisabledColor" Value="Gray"/>
+        </Style>
+    </Shell.Resources>-->
+
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"

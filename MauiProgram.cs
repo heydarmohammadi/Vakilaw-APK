@@ -68,8 +68,9 @@ public static class MauiProgram
 
         builder.Services.AddTransient<ClientsAndCasesViewModel>();
         builder.Services.AddTransient<DocumentsViewModel>();
-        builder.Services.AddTransient<SmsPanelVM>();      
-        builder.Services.AddTransient<TransactionsVM>();
+        builder.Services.AddTransient<SmsPanelVM>();
+        builder.Services.AddTransient<ReminderViewModel>();
+        builder.Services.AddTransient<TransactionsVM>();       
         builder.Services.AddTransient<ReportsVM>();
 
         // -------------------- صفحات --------------------
