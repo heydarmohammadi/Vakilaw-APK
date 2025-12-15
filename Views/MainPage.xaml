@@ -112,7 +112,7 @@
                 </Border>
 
                 <!-- مدیریت قراردادها -->
-                <Border x:Name="BorderDocuments" StrokeShape="12" Padding="15" BackgroundColor="#003049">
+                <Border x:Name="BorderDocuments" StrokeShape="12" Padding="15" BackgroundColor="#003049"> <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
                     <Grid ColumnDefinitions="Auto,*">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="Documents"/>
@@ -604,7 +604,7 @@
                                         <Label Grid.Column="0" Text="{Binding FullName}" TextColor="Black" FontFamily="Sahel" FontSize="13" FontAttributes="Bold"/>
                                         <Label Grid.Column="1" Text="{Binding PhoneNumber}" TextColor="Black" FontFamily="IRANSansWeb" FontAttributes="Bold" FontSize="12"/>
                                         <Label Grid.Column="2" Text="{Binding City}" TextColor="Black" FontSize="13" FontAttributes="Bold"/>
-                                        <ImageButton Grid.Column="3" Source="showdetails.png"
+                                        <ImageButton Grid.Column="3" Source="showdetails1.png"
                                                      Command="{Binding BindingContext.ShowDetailsCommand, Source={x:Reference Name=LawyersListPanel}}"
                                                      CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30"/>
                                     </Grid>

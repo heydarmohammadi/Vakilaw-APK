@@ -14,7 +14,7 @@ using Vakilaw.Platforms.Android;
 using Vakilaw.Platforms.iOS;
 #endif
 
-
+//#512BD4
 namespace Vakilaw;
 
 public static class MauiProgram

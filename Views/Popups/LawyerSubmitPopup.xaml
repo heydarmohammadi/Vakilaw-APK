@@ -19,7 +19,7 @@
                        Keyboard="Telephone"
                        Text="{Binding PhoneNumber}" />
 
-                <Entry Placeholder="شماره پروانه" PlaceholderColor="DarkGray"
+                <Entry Placeholder="شماره پروانه وکالت" PlaceholderColor="DarkGray"
                        Keyboard="Numeric"
                        Text="{Binding LicenseNumber}" />
 

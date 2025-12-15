@@ -1,4 +1,4 @@
-<ContentPage x:Name="RootPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage x:Name="RootPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vakilaw.MarkupExtensions"
              xmlns:converters="clr-namespace:Vakilaw.Converters"
@@ -20,8 +20,8 @@
                     Command="{Binding ShowCasesCommand}"
                     BackgroundColor="{Binding IsCasesVisible, Converter={StaticResource BoolToColorConverter}}" />
         </Grid>
-           
-            <!-- لیست موکل‌ها -->
+
+        <!-- لیست موکل‌ها -->
         <StackLayout Grid.Row="1" IsVisible="{Binding IsClientsVisible}" Spacing="10">
             <!-- جستجو -->
             <Entry Placeholder="🔍 جستجوی موکل (نام یا شماره موبایل)" PlaceholderColor="DarkGray" FontAttributes="Bold"
@@ -105,14 +105,14 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
-          
+
         <!-- فوتر ثابت -->
         <HorizontalStackLayout Grid.Row="1"
                          Padding="10"
                          Spacing="0"
                          HorizontalOptions="Start"
                          VerticalOptions="End">
-            
+
             <Label FontFamily="IRANSansWeb" FontSize="14" FontAttributes="Bold" TextColor="Gold"              
                HorizontalOptions="Center"
                Text="{Binding CountsLabel}"/>
