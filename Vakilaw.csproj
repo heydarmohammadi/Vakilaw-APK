@@ -43,7 +43,10 @@
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(TargetFramework)'=='net9.0-android'">
 		
 		<!-- 🔴 VERY IMPORTANT: Fix Release Crash -->
-		<PublishTrimmed>false</PublishTrimmed>
+		<PublishTrimmed>false</PublishTrimmed>	
+		<!-- Disable AOT (required when trimming is off) -->
+		<RunAOTCompilation>false</RunAOTCompilation>
+		<!-- Safe linker mode -->
 		<AndroidLinkMode>SdkOnly</AndroidLinkMode>
 
 		<!-- APK settings -->
