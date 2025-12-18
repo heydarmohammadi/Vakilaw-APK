@@ -37,10 +37,21 @@
 		<AndroidSigningKeyStore>vakilaw.keystore</AndroidSigningKeyStore>
 	</PropertyGroup>
 
+	<!-- ================================= -->
+	<!-- Android Release (Cafe Bazaar) -->
+	<!-- ================================= -->
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(TargetFramework)'=='net9.0-android'">
+		
+		<!-- 🔴 VERY IMPORTANT: Fix Release Crash -->
+		<PublishTrimmed>false</PublishTrimmed>
+		<AndroidLinkMode>SdkOnly</AndroidLinkMode>
+
+		<!-- APK settings -->
 		<AndroidPackageFormat>apk</AndroidPackageFormat>
 		<AndroidUseAapt2>True</AndroidUseAapt2>
 		<AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+
+		<!-- Signing -->
 		<AndroidKeyStore>true</AndroidKeyStore>		
 		<AndroidSigningStorePass>@Hmn2000Hmn</AndroidSigningStorePass>
 		<AndroidSigningKeyAlias>vakilawkey</AndroidSigningKeyAlias>
