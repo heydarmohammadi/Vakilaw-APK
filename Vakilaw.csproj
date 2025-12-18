@@ -34,14 +34,24 @@
 		<!-- Android SDK versions -->
 		<AndroidMinSdkVersion>24</AndroidMinSdkVersion>
 		<AndroidTargetSdkVersion>34</AndroidTargetSdkVersion>
+		<AndroidSigningKeyStore>vakilaw.keystore</AndroidSigningKeyStore>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
-	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidSigningStorePass>@Hmn2000Hmn</AndroidSigningStorePass>
+	  <AndroidSigningKeyAlias>vakilawkey</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>@Hmn2000Hmn</AndroidSigningKeyPass>
+	  <AndroidApkSignerAdditionalArguments>10000</AndroidApkSignerAdditionalArguments>
+	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
-	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidSigningStorePass>@Hmn2000Hmn</AndroidSigningStorePass>
+	  <AndroidSigningKeyAlias>vakilawkey</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>@Hmn2000Hmn</AndroidSigningKeyPass>
+	  <AndroidApkSignerAdditionalArguments>10000</AndroidApkSignerAdditionalArguments>
 	</PropertyGroup>
 
 	<ProjectExtensions>
