@@ -188,9 +188,8 @@
         TranslationY="{Binding AddMenuTranslationY}"
         HeightRequest="300"
         WidthRequest="250"
-        Margin="0,335,0,0"
-        Shadow="10,5,10,#80000000"
-        ZIndex="100">
+        Margin="0,335,0,0"      
+        ZIndex="100"> <!--Shadow="10,5,10,#80000000"-->
 
             <VerticalStackLayout Spacing="18" WidthRequest="200">
 

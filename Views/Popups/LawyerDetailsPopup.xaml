@@ -5,11 +5,10 @@
                   x:Class="Vakilaw.Views.Popups.LawyerDetailsPopup"
                   BackgroundColor="#80000000" FlowDirection="RightToLeft">
 
-    <Frame CornerRadius="25"
+    <Border StrokeShape="25"
            Padding="25"
            BackgroundColor="WhiteSmoke"
-           WidthRequest="330"
-           HasShadow="True"
+           WidthRequest="330"          
            VerticalOptions="Center"
            HorizontalOptions="Center">
 
@@ -28,28 +27,28 @@
             </HorizontalStackLayout>
 
             <!-- شماره تلفن -->
-            <Frame BackgroundColor="#F9F9F9"
+            <Border BackgroundColor="#F9F9F9"
                    Padding="1"
-                   CornerRadius="15"
-                   HasShadow="False">
+                   StrokeShape="15"
+                   >
                 <HorizontalStackLayout Spacing="15">
                     <Label x:Name="PhoneLabel" FontFamily="IRANSansWeb"
                    FontSize="14" Margin="150,0,-148,0" VerticalOptions="Center"
                    TextColor="Black"/>
                     <ImageButton Source="copy.png" Margin="125,0" WidthRequest="1" HeightRequest="1" Clicked="CopyPhoneNumber_Clicked"/>
                 </HorizontalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- آدرس -->
-            <Frame BackgroundColor="#FFF5E5"
+            <Border BackgroundColor="#FFF5E5"
                    Padding="10"
-                   CornerRadius="15"
-                   HasShadow="False">
+                   StrokeShape="15"
+                   >
                 <Label x:Name="DescriptionLabel"
                FontSize="13" HeightRequest="120" MaximumHeightRequest="120"
                TextColor="Black"
                LineBreakMode="WordWrap"/>
-            </Frame>
+            </Border>
 
             <!-- دکمه تماس مستقیم -->
             <Button Text="📞 تماس با وکیل"
@@ -75,5 +74,5 @@
             HeightRequest="45"
             Clicked="ClosePopup"/>
         </VerticalStackLayout>
-    </Frame>
+    </Border>
 </mopups:PopupPage>

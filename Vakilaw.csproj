@@ -22,7 +22,7 @@
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<WindowsPackageType>None</WindowsPackageType>
-		<AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+	
 		<!-- OS Platform Versions -->
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
@@ -41,14 +41,7 @@
 	<!-- Android Release (Cafe Bazaar) -->
 	<!-- ================================= -->
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(TargetFramework)'=='net9.0-android'">
-		
-		<!-- 🔴 VERY IMPORTANT: Fix Release Crash -->
-		<PublishTrimmed>false</PublishTrimmed>	
-		<!-- Disable AOT (required when trimming is off) -->
-		<RunAOTCompilation>false</RunAOTCompilation>
-		<!-- Safe linker mode -->
-		<AndroidLinkMode>SdkOnly</AndroidLinkMode>
-
+				
 		<!-- APK settings -->
 		<AndroidPackageFormat>apk</AndroidPackageFormat>
 		<AndroidUseAapt2>True</AndroidUseAapt2>
