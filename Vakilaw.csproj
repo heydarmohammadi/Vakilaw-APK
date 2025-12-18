@@ -22,7 +22,7 @@
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<WindowsPackageType>None</WindowsPackageType>
-
+		<AndroidEnableMultiDex>true</AndroidEnableMultiDex>
 		<!-- OS Platform Versions -->
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
@@ -37,21 +37,14 @@
 		<AndroidSigningKeyStore>vakilaw.keystore</AndroidSigningKeyStore>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
-	  <AndroidKeyStore>True</AndroidKeyStore>
-	  <AndroidSigningStorePass>@Hmn2000Hmn</AndroidSigningStorePass>
-	  <AndroidSigningKeyAlias>vakilawkey</AndroidSigningKeyAlias>
-	  <AndroidSigningKeyPass>@Hmn2000Hmn</AndroidSigningKeyPass>
-	  <AndroidApkSignerAdditionalArguments>10000</AndroidApkSignerAdditionalArguments>
-	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
-	  <AndroidKeyStore>True</AndroidKeyStore>
-	  <AndroidSigningStorePass>@Hmn2000Hmn</AndroidSigningStorePass>
-	  <AndroidSigningKeyAlias>vakilawkey</AndroidSigningKeyAlias>
-	  <AndroidSigningKeyPass>@Hmn2000Hmn</AndroidSigningKeyPass>
-	  <AndroidApkSignerAdditionalArguments>10000</AndroidApkSignerAdditionalArguments>
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(TargetFramework)'=='net9.0-android'">
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+		<AndroidUseAapt2>True</AndroidUseAapt2>
+		<AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+		<AndroidKeyStore>true</AndroidKeyStore>		
+		<AndroidSigningStorePass>@Hmn2000Hmn</AndroidSigningStorePass>
+		<AndroidSigningKeyAlias>vakilawkey</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>@Hmn2000Hmn</AndroidSigningKeyPass>
 	</PropertyGroup>
 
 	<ProjectExtensions>
