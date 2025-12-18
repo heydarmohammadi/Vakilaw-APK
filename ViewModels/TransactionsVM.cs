@@ -12,6 +12,7 @@ namespace Vakilaw.ViewModels;
 public partial class TransactionsVM : ObservableObject
 {
     private readonly TransactionService _transactionService;
+    private readonly MainPageVM _mainPageVM;
 
     // لیست واقعی تراکنش‌ها
     [ObservableProperty]
@@ -33,13 +34,14 @@ public partial class TransactionsVM : ObservableObject
     }
     #endregion
 
-    public TransactionsVM(TransactionService transactionService)
+    public TransactionsVM(TransactionService transactionService, MainPageVM mainPageVM)
     {
         _transactionService = transactionService ?? throw new ArgumentNullException(nameof(transactionService));
 
         // بارگذاری اولیه (فقط فراخوانی، نتیجه در UI thread اعمال می‌شود)
         LoadTransactions().SafeFireAndForget();
         _ = LoadAmountsAsync();
+        _mainPageVM = mainPageVM;
     }
 
     // 📌 بارگذاری تراکنش‌ها
@@ -142,11 +144,13 @@ public partial class TransactionsVM : ObservableObject
         }
     }
 
-
     // 📌 نمایش پاپ‌آپ افزودن تراکنش
     [RelayCommand]
     private async Task ShowAddTransactionPopup()
     {
+        if (!await _mainPageVM.CanUseLawyerFeaturesAsync())
+            return;
+
         var popup = new AddTransactionPopup(_transactionService, this, async () =>
         {
             await LoadTransactions(); // بعد از ثبت، لیست آپدیت میشه

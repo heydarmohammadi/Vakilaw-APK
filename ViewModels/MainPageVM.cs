@@ -60,7 +60,19 @@ public partial class MainPageVM : ObservableObject
     /// <summary>
     /// فقط وقتی وکیل ثبت‌نام کرده و اشتراک فعال داره → آیتم‌های ویژه رو فعال کن
     /// </summary>
+    /// 
+
     public bool CanUseLawyerFeatures => IsLawyer && IsLawyerSubscriptionActive;
+
+    public async Task<bool> CanUseLawyerFeaturesAsync()
+    {
+        if (CanUseLawyerFeatures)
+            return true;
+
+        await Toast.Make("برای استفاده از این بخش، اشتراک فعال لازم است",
+                         ToastDuration.Long).Show();
+        return false;
+    }
 
     public MainPageVM(UserService userService, SmsService otpService, LawService lawService, LawyerService lawyerService, LicenseService licenseService, ReminderService reminderService)
     {
@@ -119,7 +131,7 @@ public partial class MainPageVM : ObservableObject
             if (m.IsActivated)
             {
                 await CheckLicenseAsync();
-                OnPropertyChanged(nameof(CanUseLawyerFeatures));
+                OnPropertyChanged(nameof(CanUseLawyerFeaturesAsync));
             }
         });
 
@@ -162,7 +174,7 @@ public partial class MainPageVM : ObservableObject
             });
         }
 
-        OnPropertyChanged(nameof(CanUseLawyerFeatures));
+        OnPropertyChanged(nameof(CanUseLawyerFeaturesAsync));
     }
 
     private async Task ShowSubscriptionPopupAsync()
@@ -187,7 +199,7 @@ public partial class MainPageVM : ObservableObject
             IsTrialActive = license.SubscriptionType == "Trial";
         }
 
-        OnPropertyChanged(nameof(CanUseLawyerFeatures));
+        OnPropertyChanged(nameof(CanUseLawyerFeaturesAsync));
     }
     #endregion
 
@@ -231,12 +243,36 @@ public partial class MainPageVM : ObservableObject
     }
 
     [RelayCommand] public async Task LawBankPageAsync() => await Shell.Current.GoToAsync("LawBankPage");
-    [RelayCommand] public async Task ClientsAndCasesPageAsync() => await Shell.Current.GoToAsync("ClientsAndCasesPage");
-    [RelayCommand] public async Task DocumentsPageAsync() => await Shell.Current.GoToAsync("DocumentsPage");
-    [RelayCommand] public async Task SMSPanelPageAsync() => await Shell.Current.GoToAsync("SMSPanelPage");
+    [RelayCommand] public async Task ClientsAndCasesPageAsync()
+    {
+        if (!await CanUseLawyerFeaturesAsync())
+            return;
+        await Shell.Current.GoToAsync("ClientsAndCasesPage");
+    } /*=>*/ 
+    [RelayCommand] public async Task DocumentsPageAsync(){
+        if (!await CanUseLawyerFeaturesAsync())
+            return;
+        await Shell.Current.GoToAsync("DocumentsPage");
+    }
+    [RelayCommand] public async Task SMSPanelPageAsync()
+    {
+        if (!await CanUseLawyerFeaturesAsync())
+            return;
+        await Shell.Current.GoToAsync("SMSPanelPage");
+    }
     //[RelayCommand] public async Task SMSPanelPageAsync() => await Toast.Make("برای فعال سازی این بخش با توسعه دهنده در ارتباط باشید", ToastDuration.Long).Show(); /*await Shell.Current.GoToAsync("SMSPanelPage");*/
-    [RelayCommand] public async Task TransactionsPageAsync() => await Shell.Current.GoToAsync("TransactionsPage");
-    [RelayCommand] public async Task ReportsPageAsync() => await Shell.Current.GoToAsync("ReportsPage");
+    [RelayCommand] public async Task TransactionsPageAsync()
+    {
+        if (!await CanUseLawyerFeaturesAsync())
+            return;
+        await Shell.Current.GoToAsync("TransactionsPage");
+    }
+    [RelayCommand] public async Task ReportsPageAsync()
+    {
+        if (!await CanUseLawyerFeaturesAsync())
+            return;
+        await Shell.Current.GoToAsync("ReportsPage");
+    }
     [RelayCommand] public async Task OpenAdlIranSiteAsync() => await Launcher.OpenAsync("https://adliran.ir/");
     [RelayCommand] private async Task HamiVakilAsync() => await Launcher.OpenAsync("https://search-hamivakil.ir/");
     #endregion
@@ -268,7 +304,7 @@ public partial class MainPageVM : ObservableObject
             if (IsLawyer) CheckLicenseAsync().SafeFireAndForget();
         }
 
-        OnPropertyChanged(nameof(CanUseLawyerFeatures));
+        OnPropertyChanged(nameof(CanUseLawyerFeaturesAsync));
     }
 
     public async Task InitializeAsync()
@@ -458,6 +494,9 @@ public partial class MainPageVM : ObservableObject
     [RelayCommand]
     private async Task OpenReminderAsync()
     {
+        if (!await CanUseLawyerFeaturesAsync())
+            return;
+
         var vm = new ReminderViewModel(_reminderService);
         var popup = new ReminderPopup(vm);
 
@@ -686,6 +725,9 @@ public partial class MainPageVM : ObservableObject
     {
         try
         {
+            if (!await CanUseLawyerFeaturesAsync())
+                return;
+
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "vakilaw.db");
             string fileName = $"vakilawBackup_{DateTime.Now:yyyyMMdd_HHmmss}.db";
 
@@ -715,6 +757,9 @@ public partial class MainPageVM : ObservableObject
     {
         try
         {
+            if (!await CanUseLawyerFeaturesAsync())
+                return;
+
             var fileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
         {
             { DevicePlatform.iOS, new[] { "public.database" } },
@@ -758,6 +803,9 @@ public partial class MainPageVM : ObservableObject
     [RelayCommand]
     private async Task ClearAllAsync()
     {
+        if (!await CanUseLawyerFeaturesAsync())
+            return;
+
         // نمایش Alert برای تایید
         bool confirmed = await Application.Current.MainPage.DisplayAlert(
             LocalizationService.Instance["ClearDataWarningTitle"],

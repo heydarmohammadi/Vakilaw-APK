@@ -101,7 +101,7 @@
                 </Border>
 
                 <!-- مدیریت موکل‌ها -->
-                <Border x:Name="BorderClients" StrokeShape="12" Padding="15" BackgroundColor="#003049">
+                <Border x:Name="BorderClients" StrokeShape="12" Padding="15" BackgroundColor="#003049" > <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
                     <Grid ColumnDefinitions="Auto,*">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="Clients"/>
@@ -112,7 +112,7 @@
                 </Border>
 
                 <!-- مدیریت قراردادها -->
-                <Border x:Name="BorderDocuments" StrokeShape="12" Padding="15" BackgroundColor="#003049"> <!--IsEnabled="{Binding CanUseLawyerFeatures}"-->
+                <Border x:Name="BorderDocuments" StrokeShape="12" Padding="15" BackgroundColor="#003049">
                     <Grid ColumnDefinitions="Auto,*">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="Documents"/>
@@ -199,7 +199,7 @@
                     <Grid ColumnDefinitions="40,*,Auto" Padding="0,5">
                     <Image Source="add.png" WidthRequest="24" HeightRequest="24" />
                         <Label Text="{local:Loc ReminderItem}" Grid.Column="1"
-                        TextColor="White" FontSize="16" />
+                        TextColor="White" FontSize="16"/>
                     <Image Source="reminder.png" WidthRequest="24" Grid.Column="2" />
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Card_Tapped" CommandParameter="OpenReminder"/>

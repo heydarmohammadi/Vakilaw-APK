@@ -15,14 +15,16 @@ namespace Vakilaw.ViewModels
 
         private readonly ClientService _clientService;
         private readonly CaseService _caseService;
+        private readonly MainPageVM _mainPageVM;
 
         private System.Timers.Timer _debounceTimerClients;
         private System.Timers.Timer _debounceTimerCases;
 
-        public ClientsAndCasesViewModel(ClientService clientService, CaseService caseService)
+        public ClientsAndCasesViewModel(ClientService clientService, CaseService caseService , MainPageVM mainPageVM)
         {
             _clientService = clientService;
             _caseService = caseService;
+            _mainPageVM = mainPageVM;
 
             _ = LoadCountsAsync();
 
@@ -151,6 +153,9 @@ namespace Vakilaw.ViewModels
         [RelayCommand]
         private async Task ShowAddClientPopup()
         {
+            if (!await _mainPageVM.CanUseLawyerFeaturesAsync())
+                return;
+
             var popup = new AddClientPopup(_clientService , this);
             popup.ClientCreated += newClient =>
             {
