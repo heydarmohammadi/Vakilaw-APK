@@ -17,7 +17,7 @@
     </ContentPage.Resources>
 
     <Grid RowDefinitions="Auto,Auto,Auto,*">
-        <Border StrokeShape="5" HorizontalOptions="Center">
+        <Border StrokeShape="RoundRectangle 5" HorizontalOptions="Center">
             <!-- 📌 منوی سمت راست -->
         <HorizontalStackLayout Grid.Row="0"
                      BackgroundColor="#003566"
@@ -38,7 +38,7 @@
                 </HorizontalStackLayout>
             </HorizontalStackLayout>
         </Border>
-        <Border Grid.Row="1" StrokeShape="5" HorizontalOptions="Fill">
+        <Border Grid.Row="1" StrokeShape="RoundRectangle 5" HorizontalOptions="Fill">
             <!-- 📌 بالای صفحه: سرچ -->
             <StackLayout Grid.Row="1"
                      Padding="5"                                    
@@ -49,7 +49,7 @@
                    Text="{Binding SearchText}"/>
             </StackLayout>
         </Border>
-        <Border Grid.Row="2" BackgroundColor="GhostWhite" StrokeShape="10">
+        <Border Grid.Row="2" BackgroundColor="GhostWhite" StrokeShape="RoundRectangle 10">
             <!-- 📌 محتوای اصلی -->
         <Grid Grid.Row="2" Padding="5" HeightRequest="590">
             <ScrollView>
@@ -88,7 +88,7 @@
                             FontFamily="IRANSansWeb"
                             FontSize="14"/>
 
-                            <Border StrokeShape="5">
+                        <Border StrokeShape="RoundRectangle 5">
                                 <!-- متن لایحه -->
                             <Editor Text="{Binding BillContent}"
                             HorizontalTextAlignment="Justify" 

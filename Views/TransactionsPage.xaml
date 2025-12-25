@@ -51,14 +51,14 @@
                 HeightRequest="45"
                 HorizontalOptions="Fill"/>
 
-            <Border Stroke="Black" StrokeShape="10" StrokeThickness="3">
+            <Border Stroke="Black" StrokeShape="RoundRectangle 10" StrokeThickness="3">
                 <!-- لیست تراکنش‌ها -->
                 <CollectionView ItemsSource="{Binding Transactions}" MaximumHeightRequest="400">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Border Margin="5"
                             Padding="10"
-                            StrokeShape="12"                          
+                            StrokeShape="RoundRectangle 12"                          
                             Stroke="{Binding IsIncome, Converter={StaticResource BoolToColorConverter1}}">
                                 <Grid ColumnDefinitions="*,Auto"
                                 RowDefinitions="Auto,Auto">

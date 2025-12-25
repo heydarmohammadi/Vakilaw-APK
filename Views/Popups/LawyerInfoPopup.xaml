@@ -7,7 +7,7 @@
                   BackgroundColor="#80000000" FlowDirection="RightToLeft">
     
     <ContentView VerticalOptions="Center" HorizontalOptions="Center">
-        <Border StrokeShape="20" Padding="25" BackgroundColor="#003049" WidthRequest="320">
+        <Border StrokeShape="RoundRectangle 20" Padding="25" BackgroundColor="#003049" WidthRequest="320">
             <VerticalStackLayout Spacing="10">
                 <Label Text="👤 اطلاعات وکیل" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center"/>
                 <Label TextColor="White">

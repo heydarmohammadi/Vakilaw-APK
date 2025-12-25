@@ -32,7 +32,7 @@
             <CollectionView ItemsSource="{Binding ClientsWithCases}" SelectionMode="Single" MaximumHeightRequest="540">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border Padding="10" Margin="5" StrokeShape="12" Stroke="LightGray">
+                        <Border Padding="10" Margin="5" StrokeShape="RoundRectangle 12" Stroke="LightGray">
                             <Grid ColumnDefinitions="*,*,Auto">
                                 <Label Grid.Column="0" Text="{Binding Client.FullName}" FontFamily="IRANSansWeb" FontSize="13" FontAttributes="Bold" />
                                 <Label Grid.Column="1" Text="{Binding Client.PhoneNumber}" FontFamily="IRANSansWeb" FontAttributes="Bold" />
@@ -66,7 +66,7 @@
                         <toolkit:Expander IsExpanded="{Binding IsExpanded}">
                             <toolkit:Expander.Header>
                                 <Grid Padding="10" ColumnDefinitions="*,Auto,Auto">
-                                    <Border Padding="10" Margin="5" StrokeShape="12" Stroke="LightGray">
+                                    <Border Padding="10" Margin="5" StrokeShape="RoundRectangle 12" Stroke="LightGray">
                                         <Grid ColumnDefinitions="*,Auto">
                                             <Label Grid.Column="0" Text="{Binding Client.FullName}" 
                                                    TextColor="White" FontAttributes="Bold" VerticalOptions="Center"/>

@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid RowDefinitions="Auto,*">
-        <Border StrokeShape="5" HorizontalOptions="Center">
+        <Border StrokeShape="RoundRectangle 5" HorizontalOptions="Center">
             <!-- 📌 منوی سمت راست -->
             <HorizontalStackLayout BackgroundColor="#003566" Padding="10" Margin="5" Spacing="80">
 
@@ -61,7 +61,7 @@
                                 TextColor="GhostWhite"
                                 IsVisible="{Binding SelectedClient, Converter={StaticResource NullToBoolConverter}}" />
 
-                                <Border StrokeShape="5">
+                                <Border StrokeShape="RoundRectangle 5">
                                     <Editor Text="{Binding SingleMessage}"
                                    AutoSize="TextChanges"
                                    HeightRequest="100"
@@ -114,7 +114,7 @@
                                     </CollectionView>
                                 </Border>
 
-                                <Border StrokeShape="5">
+                                <Border StrokeShape="RoundRectangle 5">
                                     <Editor Text="{Binding GroupMessage}" AutoSize="TextChanges"
                                     HeightRequest="100"
                                     FontFamily="IRANSansWeb"
@@ -180,7 +180,7 @@
 
                 <!-- Popup گروهی مشابه -->
                 <Grid IsVisible="{Binding IsGroupDetailsVisible}" BackgroundColor="#AA000000">
-                    <Border Padding="16" StrokeShape="12" BackgroundColor="White"
+                    <Border Padding="16" StrokeShape="RoundRectangle 12" BackgroundColor="White"
                     HorizontalOptions="Center" VerticalOptions="Center"
                     WidthRequest="300" HeightRequest="200">
                         <VerticalStackLayout Spacing="10">

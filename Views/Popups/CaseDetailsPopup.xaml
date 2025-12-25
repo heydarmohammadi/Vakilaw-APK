@@ -7,7 +7,7 @@
 
     <ContentView VerticalOptions="Center" HorizontalOptions="Center">
     <Border Padding="20" Margin="20"
-    StrokeShape="12"
+    StrokeShape="RoundRectangle 12"
     BackgroundColor="#1b263b"
     HorizontalOptions="Center"
     VerticalOptions="Center"

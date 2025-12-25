@@ -8,7 +8,7 @@
     <mopup:PopupPage.Content>
         <Border
             Padding="10"
-            StrokeShape="12"
+            StrokeShape="RoundRectangle 12"
             BackgroundColor="#1b263b"
             HorizontalOptions="Center"
             VerticalOptions="Center"
@@ -55,7 +55,7 @@
                     <Entry Text="{Binding EndDate}" IsEnabled="{Binding EndDateIsEnabled}" FontFamily="IRANSansWeb"
                            Placeholder="{local:Loc CasePlaceHolderEndDate}" PlaceholderColor="DarkGray"/>
 
-                    <Border StrokeShape="5" StrokeThickness="3" Stroke="GhostWhite">
+                    <Border StrokeShape="RoundRectangle 5" StrokeThickness="3" Stroke="GhostWhite">
                         <Editor FontFamily="IRANSansWeb" Placeholder="توضیحات ..." PlaceholderColor="DarkGray"
                                 Text="{Binding Description}" AutoSize="TextChanges" MaxLength="2000"
                                 BackgroundColor="WhiteSmoke" TextColor="Black" HeightRequest="100"/>

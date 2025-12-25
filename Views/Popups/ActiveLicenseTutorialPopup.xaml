@@ -9,7 +9,7 @@
 
     <Border
      Padding="20"
-     StrokeShape="12"
+     StrokeShape="RoundRectangle 12"
      BackgroundColor="GhostWhite"
      HorizontalOptions="Center"
      VerticalOptions="Center"
@@ -48,20 +48,20 @@
             </VerticalStackLayout>
             <Label Text="پلن های اشتراکی:" HorizontalOptions="Start" TextColor="Black" FontFamily="IRANSansWeb" FontAttributes="Bold"/>
             <Grid ColumnDefinitions="1.4*,1.4*,1.5*">
-                <Border Grid.Column="0" StrokeShape="5" StrokeThickness="2">
+                <Border Grid.Column="0" StrokeShape="RoundRectangle 5" StrokeThickness="2">
                     <VerticalStackLayout Padding="5">
                         <Label Text="🥉 1 ماهه" TextColor="Black" FontFamily="IRANSansWeb" FontAttributes="Bold"/>
                         <Label Text="399/000 تومان" FontFamily="IRANSansWeb" FontSize="12" FontAttributes="Bold" TextColor="ForestGreen"/>
                     </VerticalStackLayout>
                 </Border>
-                <Border Grid.Column="1" StrokeShape="5" StrokeThickness="2">
+                <Border Grid.Column="1" StrokeShape="RoundRectangle 5" StrokeThickness="2">
                     <VerticalStackLayout Padding="5">
                         <Label Text="🥈 3 ماهه" TextColor="Black" FontFamily="IRANSansWeb" FontAttributes="Bold"/>
                         <Label Text="1/199/000 تومان" TextDecorations="Strikethrough" FontFamily="IRANSansWeb" FontSize="11" FontAttributes="Bold" TextColor="Crimson"/>
                         <Label Text="899/000 تومان" FontFamily="IRANSansWeb" FontSize="12" FontAttributes="Bold" TextColor="ForestGreen"/>
                     </VerticalStackLayout>
                 </Border>
-                <Border Grid.Column="2" StrokeShape="5" StrokeThickness="2">
+                <Border Grid.Column="2" StrokeShape="RoundRectangle 5" StrokeThickness="2">
                     <VerticalStackLayout Padding="5">
                         <Label Text="🥇 سالانه" TextColor="Black" FontFamily="IRANSansWeb" FontAttributes="Bold"/>
                         <Label Text="1/999/000 تومان" FontFamily="IRANSansWeb" FontSize="12" FontAttributes="Bold" TextColor="ForestGreen"/>

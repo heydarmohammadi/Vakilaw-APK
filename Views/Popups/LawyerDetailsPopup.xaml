@@ -5,7 +5,7 @@
                   x:Class="Vakilaw.Views.Popups.LawyerDetailsPopup"
                   BackgroundColor="#80000000" FlowDirection="RightToLeft">
 
-    <Border StrokeShape="25"
+    <Border StrokeShape="RoundRectangle 25"
            Padding="25"
            BackgroundColor="WhiteSmoke"
            WidthRequest="330"          
@@ -29,7 +29,7 @@
             <!-- شماره تلفن -->
             <Border BackgroundColor="#F9F9F9"
                    Padding="1"
-                   StrokeShape="15"
+                   StrokeShape="RoundRectangle 15"
                    >
                 <HorizontalStackLayout Spacing="15">
                     <Label x:Name="PhoneLabel" FontFamily="IRANSansWeb"
@@ -42,7 +42,7 @@
             <!-- آدرس -->
             <Border BackgroundColor="#FFF5E5"
                    Padding="10"
-                   StrokeShape="15"
+                   StrokeShape="RoundRectangle 15"
                    >
                 <Label x:Name="DescriptionLabel"
                FontSize="13" HeightRequest="120" MaximumHeightRequest="120"

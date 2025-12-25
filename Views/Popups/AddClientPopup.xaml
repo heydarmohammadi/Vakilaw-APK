@@ -7,7 +7,7 @@
     <mopup:PopupPage.Content>
         <Border
         Padding="20"
-        StrokeShape="12"
+        StrokeShape="RoundRectangle 12"
         BackgroundColor="#1b263b"
         HorizontalOptions="Center"
         VerticalOptions="Center"
@@ -22,7 +22,7 @@
                 <Entry Placeholder="کد ملی" PlaceholderColor="DarkGray" Keyboard="Numeric" Text="{Binding NationalCode}" />
                 <Entry Placeholder="شماره تماس" PlaceholderColor="DarkGray" Keyboard="Telephone" Text="{Binding PhoneNumber}" />
                 <Entry Placeholder="آدرس" PlaceholderColor="DarkGray" Text="{Binding Address}" />
-                <Border StrokeShape="5" StrokeThickness="3" Stroke="GhostWhite">
+                <Border StrokeShape="RoundRectangle 5" StrokeThickness="3" Stroke="GhostWhite">
                 <Editor Placeholder="توضیحات ..." PlaceholderColor="DarkGray" Text="{Binding Description}" HeightRequest="100"
                 AutoSize="TextChanges" MaxLength="2000" BackgroundColor="WhiteSmoke"
                 TextColor="Black"/>

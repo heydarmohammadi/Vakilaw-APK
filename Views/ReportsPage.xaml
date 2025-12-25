@@ -20,7 +20,7 @@
             <!-- عنوان اصلی -->
             <Border Padding="20"
                    BackgroundColor="#0A3D62"
-                   StrokeShape="20">
+                   StrokeShape="RoundRectangle 20">
                 <Label Text="📃 مرکز گزارش‌گیری"
                        FontSize="28"
                        HorizontalOptions="Center"
@@ -34,7 +34,7 @@
                 <!-- گزارش موکل‌ها -->
                 <Border Padding="20"
                         BackgroundColor="White"
-                        StrokeShape="25">
+                        StrokeShape="RoundRectangle 25">
                     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="15">
                         <Image Source="customer.png" WidthRequest="50"/>
 
@@ -62,7 +62,7 @@
                 <!-- گزارش پرونده‌ها -->
                 <Border Padding="20"
                         BackgroundColor="White"
-                        StrokeShape="25">
+                        StrokeShape="RoundRectangle 25">
                     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="15">
                         <Image Source="folder.png" WidthRequest="50"/>
 
@@ -88,7 +88,7 @@
                 <!-- گزارش تراکنش‌ها -->
                 <Border Padding="20"
                         BackgroundColor="White"
-                        StrokeShape="25">
+                        StrokeShape="RoundRectangle 25">
                     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="15">
                         <Image Source="transaction.png" WidthRequest="50"/>
 

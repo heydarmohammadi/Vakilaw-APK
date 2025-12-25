@@ -16,7 +16,7 @@
     <mopup:PopupPage.Content>
         <Border
             Padding="20"
-            StrokeShape="12"
+            StrokeShape="RoundRectangle 12"
             BackgroundColor="#1b263b"
             HorizontalOptions="Center"
             VerticalOptions="Center"
@@ -26,7 +26,7 @@
 
                 <!-- عنوان -->
                 <Label Text="اعتبار لایسنس شما به پایان رسیده است" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center" TextColor="Red"/>
-                <Border StrokeThickness="2" StrokeShape="5" Stroke="White">
+                <Border StrokeThickness="2" StrokeShape="RoundRectangle 5" Stroke="White">
                     <HorizontalStackLayout>
                         <Label Text="راهنمایی فعالسازی لایسنس:" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center" TextColor="White" Padding="10,5,35,0"/>
                         <Button Text="راهنمایی" Command="{Binding ActiveLicenseTutorialCommand}" BackgroundColor="Transparent" TextColor="Gold" FontSize="16" FontAttributes="Bold" Margin="0,-12,0,0" Padding="5,10,0,0"/>
@@ -41,7 +41,7 @@
                 </StackLayout>
 
                 <!-- نمایش DeviceId -->
-                <Border BackgroundColor="#1a1a1a" Padding="10" StrokeShape="8">
+                <Border BackgroundColor="#1a1a1a" Padding="10" StrokeShape="RoundRectangle 8">
                     <VerticalStackLayout>
                         <Label Text="کلید دستگاه شما:" FontAttributes="Bold" TextColor="Gold"/>
                         <Label Text="{Binding DeviceId}" HorizontalTextAlignment="Center" FontSize="12" TextColor="White" LineBreakMode="CharacterWrap"/>
@@ -61,7 +61,7 @@
                        HorizontalOptions="Center"
                        FontAttributes="Bold"/>
 
-                <Border StrokeShape="5" StrokeThickness="3" Stroke="GhostWhite">
+                <Border StrokeShape="RoundRectangle 5" StrokeThickness="3" Stroke="GhostWhite">
                     <!-- ورودی لایسنس -->
                     <Editor Placeholder="کلید لایسنس را اینجا وارد کنید"
                     HeightRequest="100"
